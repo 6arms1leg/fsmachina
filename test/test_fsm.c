@@ -8,7 +8,7 @@
 #include "stateHandler.h"
 #include "mock_activity.h"
 
-/* `"` used intentionally.  This allows the user to overwrite and provide his
+/* `"` used intentionally.  This allows the user to override and provide his
  * own implementation before falling back to libc.
  */
 #include "stdint.h"

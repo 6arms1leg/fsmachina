@@ -3,7 +3,7 @@
 #ifndef INCLUDE_FSM_H
 #define INCLUDE_FSM_H
 
-/* `"` used intentionally.  This allows the user to overwrite and provide his
+/* `"` used intentionally.  This allows the user to override and provide his
  * own implementation before falling back to libc.
  */
 #include "stdint.h"
