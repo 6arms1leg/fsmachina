@@ -85,7 +85,6 @@ void test_fsm_ignoreUnknownEvent(void)
     const p_fn_sHndlr_t stateExpected = fn_sHndlr_stateIni;
     p_fn_sHndlr_t stateActual = NULL;
 
-    const bool evtHandledExpected = false;
     bool evtHandledActual = true;
 
     fn_activity_ignore_Expect();
@@ -134,7 +133,6 @@ void test_fsm_takeInitialTransition(void)
     const p_fn_sHndlr_t stateExpected = fn_sHndlr_stateA;
     p_fn_sHndlr_t stateActual = NULL;
 
-    const bool evtHandledExpected = true;
     bool evtHandledActual = false;
 
     fn_activity_entry_Expect();
@@ -162,7 +160,6 @@ void test_fsm_takeNormalTransition(void)
     const p_fn_sHndlr_t stateExpected = fn_sHndlr_stateB;
     p_fn_sHndlr_t stateActual = NULL;
 
-    const bool evtHandledExpected = true;
     bool evtHandledActual = false;
 
     fn_activity_tran_Expect();
@@ -192,7 +189,6 @@ void test_fsm_takeTransitionToSelf(void)
     const p_fn_sHndlr_t stateExpected = fn_sHndlr_stateB;
     p_fn_sHndlr_t stateActual = NULL;
 
-    const bool evtHandledExpected = true;
     bool evtHandledActual = false;
 
     fn_activity_tran_Expect();
@@ -222,7 +218,6 @@ void test_fsm_takeTrueGuard0TransitionViaExtendedStateVariable(void)
     const p_fn_sHndlr_t stateExpected = fn_sHndlr_stateB;
     p_fn_sHndlr_t stateActual = NULL;
 
-    const bool evtHandledExpected = true;
     bool evtHandledActual = false;
 
     fn_activity_tran_Expect();
@@ -253,7 +248,6 @@ void test_fsm_takeTrueGuard1TransitionViaExtendedStateVariable(void)
     const p_fn_sHndlr_t stateExpected = fn_sHndlr_stateZ;
     p_fn_sHndlr_t stateActual = NULL;
 
-    const bool evtHandledExpected = true;
     bool evtHandledActual = false;
 
     fn_activity_tran_Expect();
@@ -288,7 +282,6 @@ void test_fsm_takeInternalTransition(void)
     const p_fn_sHndlr_t stateExpected = fn_sHndlr_stateC;
     p_fn_sHndlr_t stateActual = NULL;
 
-    const bool evtHandledExpected = true;
     bool evtHandledActual = false;
 
     fn_activity_tran_Expect();
