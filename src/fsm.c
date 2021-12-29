@@ -9,8 +9,8 @@
 void fn_fsm_ini(stc_fsm_t* const me, const p_fn_sHndlr_t p_fn_sHndlr)
 {
     /* Sanity check (Contract by Design) */
-    assert(NULL != me);
-    assert(NULL != p_fn_sHndlr);
+    assert( (NULL != me) &&
+            (NULL != p_fn_sHndlr) );
 
     me->p_fn_state = p_fn_sHndlr;
 
@@ -36,8 +36,8 @@ p_fn_sHndlr_t fn_fsm_getState(const stc_fsm_t* const me)
 void fn_fsm_tran(stc_fsm_t* const me, const p_fn_sHndlr_t p_fn_sHndlr)
 {
     /* Sanity check (Contract by Design) */
-    assert(NULL != me);
-    assert(NULL != p_fn_sHndlr);
+    assert( (NULL != me) &&
+            (NULL != p_fn_sHndlr) );
 
     (void)fn_fsm_sendEvt(me, en_fsm_evt_EXIT);
     me->p_fn_state = p_fn_sHndlr;
