@@ -48,6 +48,40 @@
     int8:     INT8
     bool:     UINT8
 
+:flags:
+  :common_c_flags: &common_c_flags
+    - -Wall
+    - -Wextra
+    - -pedantic
+    - -Wpointer-arith
+    - -Wuninitialized
+    - -Wcast-align
+    - -Wconversion
+    - -Wwrite-strings
+    - -Wno-comment
+    - -Wshadow
+    - -Og
+    - -g
+    - -std=c99
+#    - -Wredundant-decls
+#    - -Wmissing-declarations
+#    - -Werror
+  :common_link_flags: &common_link_flags
+  :gcov:
+    :compile:
+      :*:
+        - *common_c_flags
+    :link:
+      :*:
+        - *common_link_flags
+  :test:
+    :compile:
+      :*:
+        - *common_c_flags
+    :link:
+      :*:
+        - *common_link_flags
+
 :gcov:
   :reports:
     - HtmlDetailed
