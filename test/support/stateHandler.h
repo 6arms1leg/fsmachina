@@ -31,7 +31,7 @@ typedef struct
 {
     stc_fsm_t super;
     bool b_grd1;
-}stc_sHndlr_fsm_t;
+} stc_sHndlr_fsm_t;
 
 /* OPERATIONS
  * ==========
