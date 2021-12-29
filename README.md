@@ -45,6 +45,7 @@ The following loosely lists requirements, constraints, features and goals.
       preprocessor defines
     * Unit tested with 100 % coverage (LOC executed, branches taken, functions
       called)
+    * Defined quality metrics (see table below)
     * MISRA-C:2012 compliant
     * Static code analysis pass
     * No dynamic memory allocation (via `malloc()` or similar)
@@ -53,6 +54,17 @@ The following loosely lists requirements, constraints, features and goals.
   using Doxygen, Markdown, custom diagrams, UML
 * Traceability from requirements specification to implementation by
   transitivity
+
+Quality metrics:
+
+| Metric                                       | Target   |
+| -------------------------------------------- | -------- |
+| No. of parameters/arguments (per func.)      | \<= 6    |
+| No. of instructions (per func.)              | \<= 100  |
+| No. of nested control structures (per func.) | \<= 5    |
+| Cyclomatic complexity number (per func.)     | \<= 10   |
+| Comment rate (per file)                      | \>= 20 % |
+| Unit test (decision) coverage                | = 100 %  |
 
 ## Extended state variables
 
