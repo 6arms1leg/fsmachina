@@ -16,7 +16,7 @@ The following loosely lists requirements, constraints, features and goals.
 * Implementation of states by reentrant state handler functions
 * Supports entry, exit and also internal and external transition activities
 * Supports extended state variables
-* States, events and extended state variables are user-coded and pre-defined at
+* States, events and extended state variables are user-coded and predefined at
   compile time
 * UML transition actions are supported but only in a different order:
   transition action (implemented within the source state),
@@ -40,6 +40,9 @@ The following loosely lists requirements, constraints, features and goals.
     * Modular
     * Re-usable
     * Portable
+    * No unused ("dead") code: optional functionality in seperate translation
+      units (so it can be excluded by the linker) or conditionally included via
+      preprocessor defines
     * Unit tested with 100 % coverage (LOC executed, branches taken, functions
       called)
     * MISRA-C:2012 compliant
