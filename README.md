@@ -1,4 +1,4 @@
-# fsMachina - Simple finite state maschine framework
+# FSMachina - Simple finite state maschine framework
 
 This framework employs a simple and tiny
 

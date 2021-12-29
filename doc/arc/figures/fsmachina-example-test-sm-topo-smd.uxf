@@ -140,7 +140,7 @@ B</panel_attributes>
       <w>546</w>
       <h>650</h>
     </coordinates>
-    <panel_attributes>smd fsMachina
+    <panel_attributes>smd FSMachina
 /Example/Test/
 /  state machine topology/
 --
