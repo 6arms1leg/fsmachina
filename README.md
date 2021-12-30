@@ -109,6 +109,17 @@ placed within critical regions in the user code.
 That is, disabling interrupts directly before the `fn_fsm_tran()` function call
 and enabling them again directly after in the state handler functions.
 
+## Extension for asynchronous behaviour
+
+The state machine can be made asynchronous by adding a (FIFO) event queue and
+posting events to that queue (instead of directly to the state machine).
+This event queue is then processed in a periodic task (of the scheduling
+entity), which "feeds" the next event in the queue to the state machine.
+It must be ensured that this event queue never fills up entirely, in order to
+prevent losing events.
+To achieve this, the event queue size and periodic task frequency must be
+chosen properly.
+
 ## Architecture
 
 ![UML class diagram](./doc/arc/figures/fsmachina-cd.png)
