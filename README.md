@@ -24,11 +24,15 @@ The following loosely lists requirements, constraints, features and goals.
 * Hierarchical state maschine topologies can be implemented by flattenig the
   state space (this topology transformation is always possible)
 
+<!-- Separator -->
+
 * Framework design
 * Deployment in embedded systems
 * Code implementation in the C programming language ("C99", ISO/IEC 9899:1999)
 * Interfaces with the application software through state handler functions,
   event enumerations and extended state variables
+
+<!-- Separator -->
 
 * Low impact on technical budgets
     * Low CPU utilization
