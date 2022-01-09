@@ -136,7 +136,7 @@ bool fn_sHndlr_stateC(stc_fsm_t* const me, const uint8_t u8_evt)
                 fn_fsm_tran(me, fn_sHndlr_stateB);
                 b_evtHandled = true;
             }
-            else {} /* Do nothing */
+            else { ; /* Do nothing */ }
             break;
         case en_sHndlr_evt_C:
             fn_activity_tran();
@@ -178,7 +178,6 @@ bool fn_sHndlr_stateZ(stc_fsm_t* const me, const uint8_t u8_evt)
                 fn_fsm_tran(me, fn_sHndlr_stateZ);
                 b_evtHandled = true;
             }
-            else {} /* Do nothing */
             break;
         default:
             /* Ignore unknown events */
