@@ -1,3 +1,9 @@
+<!--
+Keywords:
+embedded, embedded-systems, finite-state-machine, framework, fsm,
+state-machine, synchronous
+-->
+
 # FSMachina - Simple finite state maschine framework
 
 This framework employs a simple and tiny
