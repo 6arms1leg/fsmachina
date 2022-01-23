@@ -8,7 +8,7 @@
 
 void fn_fsm_ini(stc_fsm_t* const me, const p_fn_sHndlr_t p_fn_sHndlr)
 {
-    /* Sanity check (Contract by Design) */
+    /* Sanity check (Design by Contract) */
     assert( (NULL != me) &&
             (NULL != p_fn_sHndlr) );
 
@@ -19,7 +19,7 @@ void fn_fsm_ini(stc_fsm_t* const me, const p_fn_sHndlr_t p_fn_sHndlr)
 
 bool fn_fsm_sendEvt(stc_fsm_t* const me, const uint8_t u8_evt)
 {
-    /* Sanity check (Contract by Design) */
+    /* Sanity check (Design by Contract) */
     assert(NULL != me);
 
     return( (*me->p_fn_state)(me, u8_evt) );
@@ -27,7 +27,7 @@ bool fn_fsm_sendEvt(stc_fsm_t* const me, const uint8_t u8_evt)
 
 p_fn_sHndlr_t fn_fsm_getState(const stc_fsm_t* const me)
 {
-    /* Sanity check (Contract by Design) */
+    /* Sanity check (Design by Contract) */
     assert(NULL != me);
 
     return(me->p_fn_state);
@@ -35,7 +35,7 @@ p_fn_sHndlr_t fn_fsm_getState(const stc_fsm_t* const me)
 
 void fn_fsm_tran(stc_fsm_t* const me, const p_fn_sHndlr_t p_fn_sHndlr)
 {
-    /* Sanity check (Contract by Design) */
+    /* Sanity check (Design by Contract) */
     assert( (NULL != me) &&
             (NULL != p_fn_sHndlr) );
 

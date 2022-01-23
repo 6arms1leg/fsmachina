@@ -14,7 +14,7 @@
 #include "stdint.h"
 #include "stddef.h"
 #include "stdbool.h"
-#include "assert.h" /* For Sanity checks (Contract by Design) */
+#include "assert.h" /* For Sanity checks (Design by Contract) */
 
 /** \brief Run before every test */
 void setUp(void)
