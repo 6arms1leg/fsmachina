@@ -1,7 +1,7 @@
 /** \file */
 
-#ifndef INCLUDE_STATEHANDLER_H
-#define INCLUDE_STATEHANDLER_H
+#ifndef STATEHANDLER_H
+#define STATEHANDLER_H
 
 #include "fsm.h"
 #include "activity.h"
@@ -54,4 +54,4 @@ bool fn_sHndlr_stateC(stc_fsm_t* const me, const uint8_t u8_evt);
  * from `stc_fsm_t` base class */
 bool fn_sHndlr_stateZ(stc_fsm_t* const me, const uint8_t u8_evt);
 
-#endif /* INCLUDE_STATEHANDLER_H */
+#endif /* STATEHANDLER_H */

@@ -1,7 +1,7 @@
 /** \file */
 
-#ifndef INCLUDE_ASSERT_H
-#define INCLUDE_ASSERT_H
+#ifndef ASSERT_H
+#define ASSERT_H
 
 /* libc */
 #include <stdbool.h>
@@ -38,4 +38,4 @@ do                                                                 \
 }                                                                  \
 while(false)
 
-#endif /* INCLUDE_ASSERT_H */
+#endif /* ASSERT_H */

@@ -1,7 +1,7 @@
 /** \file */
 
-#ifndef INCLUDE_FSM_H
-#define INCLUDE_FSM_H
+#ifndef FSM_H
+#define FSM_H
 
 /* `"` used intentionally.  This allows the user to override and provide his
  * own implementation before falling back to libc.
@@ -46,4 +46,4 @@ p_fn_sHndlr_t fn_fsm_getState(const stc_fsm_t* const me);
 
 void fn_fsm_tran(stc_fsm_t* const me, const p_fn_sHndlr_t p_fn_sHndlr);
 
-#endif /* INCLUDE_FSM_H */
+#endif /* FSM_H */
