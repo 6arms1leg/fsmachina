@@ -8,7 +8,7 @@
 
 #include "CException.h"
 
-#define assert(_condition) if( !(_condition) ) Throw(0)
+#define assert(_condition) if( false == (_condition) ) Throw(0)
 
 #define TEST_ASSERT_FAIL_ASSERT(_code_under_test)             \
 do                                                            \
