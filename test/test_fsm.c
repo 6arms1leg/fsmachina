@@ -42,7 +42,7 @@ void test_fsm_assertNoNullPointersOnInitialization(void)
 
 void test_fsm_assertNoNullPointerOnSendEvent(void)
 {
-    TEST_ASSERT_FAIL_ASSERT( (void)fn_fsm_sendEvt(NULL, (uint8_t)0U) );
+    TEST_ASSERT_FAIL_ASSERT( (void)fn_fsm_sendEvt(NULL, (uint8_t)0u) );
 
     return;
 }

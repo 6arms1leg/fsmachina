@@ -17,7 +17,7 @@
 
 enum en_fsm_evt
 {
-    en_fsm_evt_ENTRY = 0U,
+    en_fsm_evt_ENTRY = 0,
     en_fsm_evt_EXIT,
     en_fsm_evt_APPEVTSTART
 };
