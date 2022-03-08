@@ -50,9 +50,6 @@ The following loosely lists requirements, constraints, features and goals.
     * Modular
     * Re-usable
     * Portable
-    * No unused ("dead") code: optional functionality in seperate translation
-      units (so it can be excluded by the linker) or conditionally included via
-      preprocessor defines
     * Unit tested with 100 % coverage (LOC executed, branches taken, functions
       called)
     * Defined quality metrics (see table below)
