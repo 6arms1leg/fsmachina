@@ -7,10 +7,10 @@
  * ==========
  */
 
-void fn_activity_ignore(void);
-void fn_activity_entry(void);
-void fn_activity_exit(void);
-void fn_activity_tranIni(void);
-void fn_activity_tran(void);
+void SMactivity_ignore(void);
+void SMactivity_entry(void);
+void SMactivity_exit(void);
+void SMactivity_transInit(void);
+void SMactivity_trans(void);
 
 #endif /* SMACTIVITY_H */

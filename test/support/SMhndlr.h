@@ -38,20 +38,20 @@ typedef struct
  */
 
 /* Extended state variable `grd0` access operation */
-void fn_sHndlr_setGrd0(const bool grd);
+void SMhndlr_setGrd0(const bool grd);
 
 /* State handler functions
  *
  * The implementation of the state handler functions defines the state machine
  * configuration (i.e. the state topology).
  */
-bool fn_sHndlr_stateIni(stc_fsm_t* const me, const uint8_t u8_evt);
-bool fn_sHndlr_stateA(stc_fsm_t* const me, const uint8_t u8_evt);
-bool fn_sHndlr_stateB(stc_fsm_t* const me, const uint8_t u8_evt);
-bool fn_sHndlr_stateC(stc_fsm_t* const me, const uint8_t u8_evt);
+bool SMhndlr_statInit(stc_fsm_t* const me, const uint8_t u8_evt);
+bool SMhndlr_statA(stc_fsm_t* const me, const uint8_t u8_evt);
+bool SMhndlr_statB(stc_fsm_t* const me, const uint8_t u8_evt);
+bool SMhndlr_statC(stc_fsm_t* const me, const uint8_t u8_evt);
 
 /* State handler function that uses the extended state variable `grd1`; derived
  * from `stc_fsm_t` base class */
-bool fn_sHndlr_stateZ(stc_fsm_t* const me, const uint8_t u8_evt);
+bool SMhndlr_statZ(stc_fsm_t* const me, const uint8_t u8_evt);
 
 #endif /* SMHNDLR_H */

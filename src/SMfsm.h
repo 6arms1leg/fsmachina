@@ -38,12 +38,12 @@ struct stc_fsm
  * ==========
  */
 
-void fn_fsm_ini(stc_fsm_t* const me, const p_fn_sHndlr_t p_fn_sHndlr);
+void SMfsm_init(stc_fsm_t* const me, const p_fn_sHndlr_t p_fn_sHndlr);
 
-bool fn_fsm_sendEvt(stc_fsm_t* const me, const uint8_t u8_evt);
+bool SMfsm_sendEvt(stc_fsm_t* const me, const uint8_t u8_evt);
 
-p_fn_sHndlr_t fn_fsm_getState(const stc_fsm_t* const me);
+p_fn_sHndlr_t SMfsm_getStat(const stc_fsm_t* const me);
 
-void fn_fsm_tran(stc_fsm_t* const me, const p_fn_sHndlr_t p_fn_sHndlr);
+void SMfsm_trans(stc_fsm_t* const me, const p_fn_sHndlr_t p_fn_sHndlr);
 
 #endif /* SMFSM_H */
