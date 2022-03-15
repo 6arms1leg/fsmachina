@@ -52,20 +52,22 @@
   :common_c_flags: &common_c_flags
     - -Wall
     - -Wextra
-    - -pedantic
-    - -Wpointer-arith
-    - -Wuninitialized
-    - -Wcast-align
-    - -Wconversion
-    - -Wwrite-strings
-    - -Wno-comment
-    - -Wshadow
-    - -Og
-    - -g
-    - -std=c99
+    - -Wpedantic
 #    - -Wredundant-decls
 #    - -Wmissing-declarations
+#    - -Wmissing-prototypes
+    - -Wstrict-prototypes
+    - -Wdouble-promotion
+    - -Wcast-align
+    - -Wcast-qual
+    - -Wconversion
+    - -Wwrite-strings
+    - -Wparentheses
+    - -Wshadow
 #    - -Werror
+    - -std=c99
+    - -Og
+    - -g
   :common_link_flags: &common_link_flags
   :gcov:
     :compile:
