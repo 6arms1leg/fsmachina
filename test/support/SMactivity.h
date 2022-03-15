@@ -1,7 +1,7 @@
 /** \file */
 
-#ifndef ACTIVITY_H
-#define ACTIVITY_H
+#ifndef SMACTIVITY_H
+#define SMACTIVITY_H
 
 /* OPERATIONS
  * ==========
@@ -13,4 +13,4 @@ void fn_activity_exit(void);
 void fn_activity_tranIni(void);
 void fn_activity_tran(void);
 
-#endif /* ACTIVITY_H */
+#endif /* SMACTIVITY_H */

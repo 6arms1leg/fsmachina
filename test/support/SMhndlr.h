@@ -1,10 +1,10 @@
 /** \file */
 
-#ifndef STATEHANDLER_H
-#define STATEHANDLER_H
+#ifndef SMHNDLR_H
+#define SMHNDLR_H
 
-#include "fsm.h"
-#include "activity.h"
+#include "SMfsm.h"
+#include "SMactivity.h"
 
 /* `"` used intentionally.  This allows the user to override and provide his
  * own implementation before falling back to libc.
@@ -54,4 +54,4 @@ bool fn_sHndlr_stateC(stc_fsm_t* const me, const uint8_t u8_evt);
  * from `stc_fsm_t` base class */
 bool fn_sHndlr_stateZ(stc_fsm_t* const me, const uint8_t u8_evt);
 
-#endif /* STATEHANDLER_H */
+#endif /* SMHNDLR_H */

@@ -4,9 +4,9 @@
 
 #include "unity.h"
 
-#include "fsm.h"
-#include "stateHandler.h"
-#include "mock_activity.h"
+#include "SMfsm.h"
+#include "SMhndlr.h"
+#include "mock_SMactivity.h"
 
 /* `"` used intentionally.  This allows the user to override and provide his
  * own implementation before falling back to libc.

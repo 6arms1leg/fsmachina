@@ -1,6 +1,6 @@
 /** \file */
 
-#include "fsm.h"
+#include "SMfsm.h"
 
 /* OPERATIONS
  * ==========
