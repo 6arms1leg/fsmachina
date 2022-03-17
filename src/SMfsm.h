@@ -15,35 +15,35 @@
  * ==========
  */
 
-enum en_fsm_evt
+enum SMfsm_evt
 {
-    en_fsm_evt_ENTRY = 0,
-    en_fsm_evt_EXIT,
-    en_fsm_evt_APPEVTSTART
+    SMFSM_ENTRY = 0,
+    SMFSM_EXIT,
+    SMFSM_APP_EVT_START
 };
 
 /* Forward declaration because of cicrular dependencies */
-typedef struct stc_fsm stc_fsm_t;
+typedef struct SMfsm_fsm SMfsm_fsm_t;
 
 /* Important: The state handler functions with this signature must be reentrant
  */
-typedef bool (*p_fn_sHndlr_t)(stc_fsm_t* const me, const uint8_t u8_evt);
+typedef bool (*SMfsm_p_hndlr_t)(SMfsm_fsm_t* const me, const uint8_t u8_evt);
 
-struct stc_fsm
+struct SMfsm_fsm
 {
-    p_fn_sHndlr_t p_fn_state;
+    SMfsm_p_hndlr_t p_fn_state;
 };
 
 /* OPERATIONS
  * ==========
  */
 
-void SMfsm_init(stc_fsm_t* const me, const p_fn_sHndlr_t p_fn_sHndlr);
+void SMfsm_init(SMfsm_fsm_t* const me, const SMfsm_p_hndlr_t p_fn_sHndlr);
 
-bool SMfsm_sendEvt(stc_fsm_t* const me, const uint8_t u8_evt);
+bool SMfsm_sendEvt(SMfsm_fsm_t* const me, const uint8_t u8_evt);
 
-p_fn_sHndlr_t SMfsm_getStat(const stc_fsm_t* const me);
+SMfsm_p_hndlr_t SMfsm_getStat(const SMfsm_fsm_t* const me);
 
-void SMfsm_trans(stc_fsm_t* const me, const p_fn_sHndlr_t p_fn_sHndlr);
+void SMfsm_trans(SMfsm_fsm_t* const me, const SMfsm_p_hndlr_t p_fn_sHndlr);
 
 #endif /* SMFSM_H */
