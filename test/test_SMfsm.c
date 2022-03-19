@@ -32,10 +32,10 @@ void tearDown(void)
 
 void test_SMfsm_assertNoNullPtrsOnInit(void)
 {
-    static SMfsm_fsm_t stc_fsm;
+    static SMfsm_fsm_t fsm;
 
     TEST_ASSERT_FAIL_ASSERT( SMfsm_init(NULL, &SMhndlr_statInit) );
-    TEST_ASSERT_FAIL_ASSERT( SMfsm_init(&stc_fsm, NULL) );
+    TEST_ASSERT_FAIL_ASSERT( SMfsm_init(&fsm, NULL) );
 
     return;
 }
@@ -56,58 +56,58 @@ void test_SMfsm_assertNoNullPtrOnGetStat(void)
 
 void test_SMfsm_assertNoNullPtrsOnTrans(void)
 {
-    static SMfsm_fsm_t stc_fsm;
+    static SMfsm_fsm_t fsm;
 
     TEST_ASSERT_FAIL_ASSERT( SMfsm_trans(NULL, &SMhndlr_statA) );
-    TEST_ASSERT_FAIL_ASSERT( SMfsm_trans(&stc_fsm, NULL) );
+    TEST_ASSERT_FAIL_ASSERT( SMfsm_trans(&fsm, NULL) );
 
     return;
 }
 
 void test_SMfsm_initAndQueryStat(void)
 {
-    const SMfsm_p_hndlr_t p_fn_stateExpected = &SMhndlr_statInit;
-    SMfsm_p_hndlr_t p_fn_stateActual = NULL;
+    const SMfsm_p_hndlr_t p_statHndlrExp = &SMhndlr_statInit;
+    SMfsm_p_hndlr_t p_statHndlrAct = NULL;
 
     /* Initialize FSM */
-    static SMfsm_fsm_t stc_fsm;
-    SMfsm_init(&stc_fsm, p_fn_stateExpected);
+    static SMfsm_fsm_t fsm;
+    SMfsm_init(&fsm, p_statHndlrExp);
 
-    p_fn_stateActual = SMfsm_getStat(&stc_fsm);
+    p_statHndlrAct = SMfsm_getStat(&fsm);
 
-    TEST_ASSERT_EQUAL_PTR(p_fn_stateExpected, p_fn_stateActual);
+    TEST_ASSERT_EQUAL_PTR(p_statHndlrExp, p_statHndlrAct);
 
     return;
 }
 
 void test_SMfsm_ignoreUnknownEvt(void)
 {
-    const SMfsm_p_hndlr_t p_fn_stateExpected = &SMhndlr_statInit;
-    SMfsm_p_hndlr_t p_fn_stateActual = NULL;
+    const SMfsm_p_hndlr_t p_statHndlrExp = &SMhndlr_statInit;
+    SMfsm_p_hndlr_t p_statHndlrAct = NULL;
 
-    bool b_evtHandledActual = true;
+    bool evtHandled = true;
 
     SMactivity_ignore_Expect();
 
     /* Initialize FSM */
-    static SMfsm_fsm_t stc_fsm;
-    SMfsm_init(&stc_fsm, &SMhndlr_statInit);
+    static SMfsm_fsm_t fsm;
+    SMfsm_init(&fsm, &SMhndlr_statInit);
 
-    b_evtHandledActual = SMfsm_sendEvt(&stc_fsm, SMHNDLR_EVT_A);
+    evtHandled = SMfsm_sendEvt(&fsm, SMHNDLR_EVT_A);
 
-    TEST_ASSERT_FALSE(b_evtHandledActual);
+    TEST_ASSERT_FALSE(evtHandled);
 
-    p_fn_stateActual = SMfsm_getStat(&stc_fsm);
+    p_statHndlrAct = SMfsm_getStat(&fsm);
 
-    TEST_ASSERT_EQUAL_PTR(p_fn_stateExpected, p_fn_stateActual);
+    TEST_ASSERT_EQUAL_PTR(p_statHndlrExp, p_statHndlrAct);
 
     return;
 }
 
 void test_SMfsm_transActivitySequence(void)
 {
-    const SMfsm_p_hndlr_t p_fn_stateExpected = &SMhndlr_statB;
-    SMfsm_p_hndlr_t p_fn_stateActual = NULL;
+    const SMfsm_p_hndlr_t p_statHndlrExp = &SMhndlr_statB;
+    SMfsm_p_hndlr_t p_statHndlrAct = NULL;
 
     SMactivity_exit_Expect();
     SMactivity_entry_Expect();
@@ -116,24 +116,24 @@ void test_SMfsm_transActivitySequence(void)
      * deviation from UML SM diagram where initial transition activity is
      * executed first)
      */
-    static SMfsm_fsm_t stc_fsm;
-    SMfsm_init(&stc_fsm, &SMhndlr_statA);
+    static SMfsm_fsm_t fsm;
+    SMfsm_init(&fsm, &SMhndlr_statA);
 
-    SMfsm_trans(&stc_fsm, p_fn_stateExpected);
+    SMfsm_trans(&fsm, p_statHndlrExp);
 
-    p_fn_stateActual = SMfsm_getStat(&stc_fsm);
+    p_statHndlrAct = SMfsm_getStat(&fsm);
 
-    TEST_ASSERT_EQUAL_PTR(p_fn_stateExpected, p_fn_stateActual);
+    TEST_ASSERT_EQUAL_PTR(p_statHndlrExp, p_statHndlrAct);
 
     return;
 }
 
 void test_SMfsm_takeInitTrans(void)
 {
-    const SMfsm_p_hndlr_t p_fn_stateExpected = &SMhndlr_statA;
-    SMfsm_p_hndlr_t p_fn_stateActual = NULL;
+    const SMfsm_p_hndlr_t p_statHndlrExp = &SMhndlr_statA;
+    SMfsm_p_hndlr_t p_statHndlrAct = NULL;
 
-    bool b_evtHandledActual = false;
+    bool evtHandled = false;
 
     SMactivity_entry_Expect();
     SMactivity_transInit_Expect();
@@ -141,26 +141,26 @@ void test_SMfsm_takeInitTrans(void)
     SMactivity_entry_Expect();
 
     /* Initialize FSM */
-    static SMfsm_fsm_t stc_fsm;
-    SMfsm_init(&stc_fsm, &SMhndlr_statInit);
+    static SMfsm_fsm_t fsm;
+    SMfsm_init(&fsm, &SMhndlr_statInit);
 
-    b_evtHandledActual = SMfsm_sendEvt(&stc_fsm, SMFSM_ENTRY);
+    evtHandled = SMfsm_sendEvt(&fsm, SMFSM_ENTRY);
 
-    TEST_ASSERT_TRUE(b_evtHandledActual);
+    TEST_ASSERT_TRUE(evtHandled);
 
-    p_fn_stateActual = SMfsm_getStat(&stc_fsm);
+    p_statHndlrAct = SMfsm_getStat(&fsm);
 
-    TEST_ASSERT_EQUAL_PTR(p_fn_stateExpected, p_fn_stateActual);
+    TEST_ASSERT_EQUAL_PTR(p_statHndlrExp, p_statHndlrAct);
 
     return;
 }
 
 void test_SMfsm_takeNormalTrans(void)
 {
-    const SMfsm_p_hndlr_t p_fn_stateExpected = &SMhndlr_statB;
-    SMfsm_p_hndlr_t p_fn_stateActual = NULL;
+    const SMfsm_p_hndlr_t p_statHndlrExp = &SMhndlr_statB;
+    SMfsm_p_hndlr_t p_statHndlrAct = NULL;
 
-    bool b_evtHandledActual = false;
+    bool evtHandled = false;
 
     SMactivity_trans_Expect();
     SMactivity_exit_Expect();
@@ -170,26 +170,26 @@ void test_SMfsm_takeNormalTrans(void)
      * deviation from UML SM diagram where initial transition activity is
      * executed first)
      */
-    static SMfsm_fsm_t stc_fsm;
-    SMfsm_init(&stc_fsm, &SMhndlr_statA);
+    static SMfsm_fsm_t fsm;
+    SMfsm_init(&fsm, &SMhndlr_statA);
 
-    b_evtHandledActual = SMfsm_sendEvt(&stc_fsm, SMHNDLR_EVT_B);
+    evtHandled = SMfsm_sendEvt(&fsm, SMHNDLR_EVT_B);
 
-    TEST_ASSERT_TRUE(b_evtHandledActual);
+    TEST_ASSERT_TRUE(evtHandled);
 
-    p_fn_stateActual = SMfsm_getStat(&stc_fsm);
+    p_statHndlrAct = SMfsm_getStat(&fsm);
 
-    TEST_ASSERT_EQUAL_PTR(p_fn_stateExpected, p_fn_stateActual);
+    TEST_ASSERT_EQUAL_PTR(p_statHndlrExp, p_statHndlrAct);
 
     return;
 }
 
 void test_SMfsm_takeTransToSelf(void)
 {
-    const SMfsm_p_hndlr_t p_fn_stateExpected = &SMhndlr_statB;
-    SMfsm_p_hndlr_t p_fn_stateActual = NULL;
+    const SMfsm_p_hndlr_t p_statHndlrExp = &SMhndlr_statB;
+    SMfsm_p_hndlr_t p_statHndlrAct = NULL;
 
-    bool b_evtHandledActual = false;
+    bool evtHandled = false;
 
     SMactivity_trans_Expect();
     SMactivity_exit_Expect();
@@ -199,26 +199,26 @@ void test_SMfsm_takeTransToSelf(void)
      * deviation from UML SM diagram where initial transition activity is
      * executed first)
      */
-    static SMfsm_fsm_t stc_fsm;
-    SMfsm_init(&stc_fsm, &SMhndlr_statB);
+    static SMfsm_fsm_t fsm;
+    SMfsm_init(&fsm, &SMhndlr_statB);
 
-    b_evtHandledActual = SMfsm_sendEvt(&stc_fsm, SMHNDLR_EVT_B);
+    evtHandled = SMfsm_sendEvt(&fsm, SMHNDLR_EVT_B);
 
-    TEST_ASSERT_TRUE(b_evtHandledActual);
+    TEST_ASSERT_TRUE(evtHandled);
 
-    p_fn_stateActual = SMfsm_getStat(&stc_fsm);
+    p_statHndlrAct = SMfsm_getStat(&fsm);
 
-    TEST_ASSERT_EQUAL_PTR(p_fn_stateExpected, p_fn_stateActual);
+    TEST_ASSERT_EQUAL_PTR(p_statHndlrExp, p_statHndlrAct);
 
     return;
 }
 
 void test_SMfsm_takeTrueGrd0TransViaExtdStatVar(void)
 {
-    const SMfsm_p_hndlr_t p_fn_stateExpected = &SMhndlr_statB;
-    SMfsm_p_hndlr_t p_fn_stateActual = NULL;
+    const SMfsm_p_hndlr_t p_statHndlrExp = &SMhndlr_statB;
+    SMfsm_p_hndlr_t p_statHndlrAct = NULL;
 
-    bool b_evtHandledActual = false;
+    bool evtHandled = false;
 
     SMactivity_trans_Expect();
     SMactivity_exit_Expect();
@@ -228,27 +228,27 @@ void test_SMfsm_takeTrueGrd0TransViaExtdStatVar(void)
      * deviation from UML SM diagram where initial transition activity is
      * executed first)
      */
-    static SMfsm_fsm_t stc_fsm;
-    SMfsm_init(&stc_fsm, &SMhndlr_statC);
+    static SMfsm_fsm_t fsm;
+    SMfsm_init(&fsm, &SMhndlr_statC);
     SMhndlr_setGrd0(true);
 
-    b_evtHandledActual = SMfsm_sendEvt(&stc_fsm, SMHNDLR_EVT_B);
+    evtHandled = SMfsm_sendEvt(&fsm, SMHNDLR_EVT_B);
 
-    TEST_ASSERT_TRUE(b_evtHandledActual);
+    TEST_ASSERT_TRUE(evtHandled);
 
-    p_fn_stateActual = SMfsm_getStat(&stc_fsm);
+    p_statHndlrAct = SMfsm_getStat(&fsm);
 
-    TEST_ASSERT_EQUAL_PTR(p_fn_stateExpected, p_fn_stateActual);
+    TEST_ASSERT_EQUAL_PTR(p_statHndlrExp, p_statHndlrAct);
 
     return;
 }
 
 void test_SMfsm_takeTrueGrd1TransViaExtdStatVar(void)
 {
-    const SMfsm_p_hndlr_t p_fn_stateExpected = &SMhndlr_statZ;
-    SMfsm_p_hndlr_t p_fn_stateActual = NULL;
+    const SMfsm_p_hndlr_t p_statHndlrExp = &SMhndlr_statZ;
+    SMfsm_p_hndlr_t p_statHndlrAct = NULL;
 
-    bool b_evtHandledActual = false;
+    bool evtHandled = false;
 
     SMactivity_trans_Expect();
     SMactivity_exit_Expect();
@@ -258,31 +258,30 @@ void test_SMfsm_takeTrueGrd1TransViaExtdStatVar(void)
      * deviation from UML SM diagram where initial transition activity is
      * executed first)
      */
-    static SMhndlr_fsm_t stc_sHndlr_fsm;
+    static SMhndlr_fsm_t fsm;
     /* Explicit upcast needed (which is safe here) */
-    SMfsm_init( (SMfsm_fsm_t*)&stc_sHndlr_fsm, &SMhndlr_statZ );
-    stc_sHndlr_fsm.b_grd1 = true;
-
-    /* Explicit upcast needed (which is safe here) */
-    b_evtHandledActual = SMfsm_sendEvt( (SMfsm_fsm_t*)&stc_sHndlr_fsm,
-                                        SMHNDLR_EVT_Z );
-
-    TEST_ASSERT_TRUE(b_evtHandledActual);
+    SMfsm_init( (SMfsm_fsm_t*)&fsm, &SMhndlr_statZ );
+    fsm.grd1 = true;
 
     /* Explicit upcast needed (which is safe here) */
-    p_fn_stateActual = SMfsm_getStat( (SMfsm_fsm_t*)&stc_sHndlr_fsm );
+    evtHandled = SMfsm_sendEvt( (SMfsm_fsm_t*)&fsm, SMHNDLR_EVT_Z );
 
-    TEST_ASSERT_EQUAL_PTR(p_fn_stateExpected, p_fn_stateActual);
+    TEST_ASSERT_TRUE(evtHandled);
+
+    /* Explicit upcast needed (which is safe here) */
+    p_statHndlrAct = SMfsm_getStat( (SMfsm_fsm_t*)&fsm );
+
+    TEST_ASSERT_EQUAL_PTR(p_statHndlrExp, p_statHndlrAct);
 
     return;
 }
 
 void test_SMfsm_takeInternalTrans(void)
 {
-    const SMfsm_p_hndlr_t p_fn_stateExpected = &SMhndlr_statC;
-    SMfsm_p_hndlr_t p_fn_stateActual = NULL;
+    const SMfsm_p_hndlr_t p_statHndlrExp = &SMhndlr_statC;
+    SMfsm_p_hndlr_t p_statHndlrAct = NULL;
 
-    bool b_evtHandledActual = false;
+    bool evtHandled = false;
 
     SMactivity_trans_Expect();
 
@@ -290,16 +289,16 @@ void test_SMfsm_takeInternalTrans(void)
      * deviation from UML SM diagram where initial transition activity is
      * executed first)
      */
-    static SMfsm_fsm_t stc_fsm;
-    SMfsm_init(&stc_fsm, &SMhndlr_statC);
+    static SMfsm_fsm_t fsm;
+    SMfsm_init(&fsm, &SMhndlr_statC);
 
-    b_evtHandledActual = SMfsm_sendEvt(&stc_fsm, SMHNDLR_EVT_C);
+    evtHandled = SMfsm_sendEvt(&fsm, SMHNDLR_EVT_C);
 
-    TEST_ASSERT_TRUE(b_evtHandledActual);
+    TEST_ASSERT_TRUE(evtHandled);
 
-    p_fn_stateActual = SMfsm_getStat(&stc_fsm);
+    p_statHndlrAct = SMfsm_getStat(&fsm);
 
-    TEST_ASSERT_EQUAL_PTR(p_fn_stateExpected, p_fn_stateActual);
+    TEST_ASSERT_EQUAL_PTR(p_statHndlrExp, p_statHndlrAct);
 
     return;
 }

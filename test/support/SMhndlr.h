@@ -30,7 +30,7 @@ enum SMhndlr_evt
 typedef struct
 {
     SMfsm_fsm_t super;
-    bool b_grd1;
+    bool grd1;
 } SMhndlr_fsm_t;
 
 /* OPERATIONS
@@ -45,13 +45,13 @@ void SMhndlr_setGrd0(const bool grd);
  * The implementation of the state handler functions defines the state machine
  * configuration (i.e. the state topology).
  */
-bool SMhndlr_statInit(SMfsm_fsm_t* const me, const uint8_t u8_evt);
-bool SMhndlr_statA(SMfsm_fsm_t* const me, const uint8_t u8_evt);
-bool SMhndlr_statB(SMfsm_fsm_t* const me, const uint8_t u8_evt);
-bool SMhndlr_statC(SMfsm_fsm_t* const me, const uint8_t u8_evt);
+bool SMhndlr_statInit(SMfsm_fsm_t* const me, const uint8_t evt);
+bool SMhndlr_statA(SMfsm_fsm_t* const me, const uint8_t evt);
+bool SMhndlr_statB(SMfsm_fsm_t* const me, const uint8_t evt);
+bool SMhndlr_statC(SMfsm_fsm_t* const me, const uint8_t evt);
 
 /* State handler function that uses the extended state variable `grd1`; derived
  * from `SMfsm_fsm_t` base class */
-bool SMhndlr_statZ(SMfsm_fsm_t* const me, const uint8_t u8_evt);
+bool SMhndlr_statZ(SMfsm_fsm_t* const me, const uint8_t evt);
 
 #endif /* SMHNDLR_H */

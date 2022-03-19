@@ -8,30 +8,30 @@
 
 #include "CException.h"
 
-#define assert(_condition) if( false == (_condition) ) Throw(0)
+#define assert(condition_) if( false == (condition_) ) Throw(0)
 
-#define TEST_ASSERT_FAIL_ASSERT(_code_under_test)             \
+#define TEST_ASSERT_FAIL_ASSERT(codeUnderTest_)               \
 do                                                            \
 {                                                             \
-    CEXCEPTION_T _exception;                                  \
+    CEXCEPTION_T exception_;                                  \
     Try                                                       \
     {                                                         \
-        _code_under_test;                                     \
+        codeUnderTest_;                                       \
         TEST_FAIL_MESSAGE("Code under test did not assert."); \
     }                                                         \
-    Catch(_exception) {}                                      \
+    Catch(exception_) {}                                      \
 }                                                             \
 while(false)
 
-#define TEST_ASSERT_PASS_ASSERT(_code_under_test)                  \
+#define TEST_ASSERT_PASS_ASSERT(codeUnderTest_)                    \
 do                                                                 \
 {                                                                  \
-    CEXCEPTION_T _exception;                                       \
+    CEXCEPTION_T exception_;                                       \
     Try                                                            \
     {                                                              \
-        _code_under_test;                                          \
+        codeUnderTest_;                                            \
     }                                                              \
-    Catch(_exception)                                              \
+    Catch(exception_)                                              \
     {                                                              \
         TEST_FAIL_MESSAGE("Code under test failed an assertion."); \
     }                                                              \
