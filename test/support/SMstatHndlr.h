@@ -15,7 +15,7 @@
  * ==========
  */
 
-enum SMhndlr_evt {
+enum SMstatHndlr_evt {
     SMHNDLR_EVT_A = SMFSM_APP_EVT_START,
     SMHNDLR_EVT_B,
     SMHNDLR_EVT_C,
@@ -26,28 +26,28 @@ enum SMhndlr_evt {
 typedef struct {
     SMfsm_fsm_t super; /* Base class */
     bool grd1; /* Extended state variable */
-} SMhndlr_fsm_t;
+} SMstatHndlr_fsm_t;
 
 /* OPERATIONS
  * ==========
  */
 
 /* Extended state variable access operation */
-void SMhndlr_setGrd0(const bool grd);
+void SMstatHndlr_setGrd0(const bool grd);
 
 /* State handler functions
  *
  * The implementation of the state handler functions defines the state machine
  * configuration (i.e. the state topology).
  */
-bool SMhndlr_statInit(SMfsm_fsm_t* const me, const uint8_t evt);
-bool SMhndlr_statA(SMfsm_fsm_t* const me, const uint8_t evt);
-bool SMhndlr_statB(SMfsm_fsm_t* const me, const uint8_t evt);
-bool SMhndlr_statC(SMfsm_fsm_t* const me, const uint8_t evt);
+bool SMstatHndlr_statInit(SMfsm_fsm_t* const me, const uint8_t evt);
+bool SMstatHndlr_statA(SMfsm_fsm_t* const me, const uint8_t evt);
+bool SMstatHndlr_statB(SMfsm_fsm_t* const me, const uint8_t evt);
+bool SMstatHndlr_statC(SMfsm_fsm_t* const me, const uint8_t evt);
 
 /* State handler function that uses the extended state variable `grd1`; derived
  * from `SMfsm_fsm_t` base class
  */
-bool SMhndlr_statZ(SMfsm_fsm_t* const me, const uint8_t evt);
+bool SMstatHndlr_statZ(SMfsm_fsm_t* const me, const uint8_t evt);
 
 #endif /* SMSTATHNDLR_H */

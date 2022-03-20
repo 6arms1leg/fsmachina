@@ -22,13 +22,13 @@ void setUp(void) {
 
 /** \brief Run after every test */
 void tearDown(void) {
-    SMhndlr_setGrd0(false); /* Reset extended state variable */
+    SMstatHndlr_setGrd0(false); /* Reset extended state variable */
 }
 
 void test_SMfsm_assertNoNullPtrsOnInit(void) {
     SMfsm_fsm_t fsm;
 
-    TEST_ASSERT_FAIL_ASSERT(SMfsm_init(NULL, &SMhndlr_statInit));
+    TEST_ASSERT_FAIL_ASSERT(SMfsm_init(NULL, &SMstatHndlr_statInit));
     TEST_ASSERT_FAIL_ASSERT(SMfsm_init(&fsm, NULL));
 }
 
@@ -43,12 +43,12 @@ void test_SMfsm_assertNoNullPtrOnGetStat(void) {
 void test_SMfsm_assertNoNullPtrsOnTrans(void) {
     SMfsm_fsm_t fsm;
 
-    TEST_ASSERT_FAIL_ASSERT(SMfsm_trans(NULL, &SMhndlr_statA));
+    TEST_ASSERT_FAIL_ASSERT(SMfsm_trans(NULL, &SMstatHndlr_statA));
     TEST_ASSERT_FAIL_ASSERT(SMfsm_trans(&fsm, NULL));
 }
 
 void test_SMfsm_initAndQueryStat(void) {
-    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMhndlr_statInit;
+    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMstatHndlr_statInit;
     SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
 
     /* Initialize FSM */
@@ -61,7 +61,7 @@ void test_SMfsm_initAndQueryStat(void) {
 }
 
 void test_SMfsm_ignoreUnknownEvt(void) {
-    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMhndlr_statInit;
+    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMstatHndlr_statInit;
     SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
     bool evtHandled = true;
 
@@ -69,7 +69,7 @@ void test_SMfsm_ignoreUnknownEvt(void) {
 
     /* Initialize FSM */
     SMfsm_fsm_t fsm;
-    SMfsm_init(&fsm, &SMhndlr_statInit);
+    SMfsm_init(&fsm, &SMstatHndlr_statInit);
 
     evtHandled = SMfsm_sendEvt(&fsm, SMHNDLR_EVT_A);
 
@@ -81,7 +81,7 @@ void test_SMfsm_ignoreUnknownEvt(void) {
 }
 
 void test_SMfsm_transActivitySequence(void) {
-    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMhndlr_statB;
+    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMstatHndlr_statB;
     SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
 
     SMactivity_exit_Expect();
@@ -91,7 +91,7 @@ void test_SMfsm_transActivitySequence(void) {
        deviation from UML SM diagram where initial transition activity is
        executed first) */
     SMfsm_fsm_t fsm;
-    SMfsm_init(&fsm, &SMhndlr_statA);
+    SMfsm_init(&fsm, &SMstatHndlr_statA);
 
     SMfsm_trans(&fsm, p_statHndlrExp);
 
@@ -101,7 +101,7 @@ void test_SMfsm_transActivitySequence(void) {
 }
 
 void test_SMfsm_takeInitTrans(void) {
-    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMhndlr_statA;
+    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMstatHndlr_statA;
     SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
     bool evtHandled = false;
 
@@ -112,7 +112,7 @@ void test_SMfsm_takeInitTrans(void) {
 
     /* Initialize FSM */
     SMfsm_fsm_t fsm;
-    SMfsm_init(&fsm, &SMhndlr_statInit);
+    SMfsm_init(&fsm, &SMstatHndlr_statInit);
 
     evtHandled = SMfsm_sendEvt(&fsm, SMFSM_ENTRY);
 
@@ -124,7 +124,7 @@ void test_SMfsm_takeInitTrans(void) {
 }
 
 void test_SMfsm_takeNormalTrans(void) {
-    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMhndlr_statB;
+    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMstatHndlr_statB;
     SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
     bool evtHandled = false;
 
@@ -136,7 +136,7 @@ void test_SMfsm_takeNormalTrans(void) {
        deviation from UML SM diagram where initial transition activity is
        executed first) */
     SMfsm_fsm_t fsm;
-    SMfsm_init(&fsm, &SMhndlr_statA);
+    SMfsm_init(&fsm, &SMstatHndlr_statA);
 
     evtHandled = SMfsm_sendEvt(&fsm, SMHNDLR_EVT_B);
 
@@ -148,7 +148,7 @@ void test_SMfsm_takeNormalTrans(void) {
 }
 
 void test_SMfsm_takeTransToSelf(void) {
-    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMhndlr_statB;
+    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMstatHndlr_statB;
     SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
     bool evtHandled = false;
 
@@ -160,7 +160,7 @@ void test_SMfsm_takeTransToSelf(void) {
        deviation from UML SM diagram where initial transition activity is
        executed first) */
     SMfsm_fsm_t fsm;
-    SMfsm_init(&fsm, &SMhndlr_statB);
+    SMfsm_init(&fsm, &SMstatHndlr_statB);
 
     evtHandled = SMfsm_sendEvt(&fsm, SMHNDLR_EVT_B);
 
@@ -172,7 +172,7 @@ void test_SMfsm_takeTransToSelf(void) {
 }
 
 void test_SMfsm_takeTrueGrd0TransViaExtdStatVar(void) {
-    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMhndlr_statB;
+    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMstatHndlr_statB;
     SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
     bool evtHandled = false;
 
@@ -184,8 +184,8 @@ void test_SMfsm_takeTrueGrd0TransViaExtdStatVar(void) {
        deviation from UML SM diagram where initial transition activity is
        executed first) */
     SMfsm_fsm_t fsm;
-    SMfsm_init(&fsm, &SMhndlr_statC);
-    SMhndlr_setGrd0(true);
+    SMfsm_init(&fsm, &SMstatHndlr_statC);
+    SMstatHndlr_setGrd0(true);
 
     evtHandled = SMfsm_sendEvt(&fsm, SMHNDLR_EVT_B);
 
@@ -197,7 +197,7 @@ void test_SMfsm_takeTrueGrd0TransViaExtdStatVar(void) {
 }
 
 void test_SMfsm_takeTrueGrd1TransViaExtdStatVar(void) {
-    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMhndlr_statZ;
+    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMstatHndlr_statZ;
     SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
     bool evtHandled = false;
 
@@ -208,8 +208,8 @@ void test_SMfsm_takeTrueGrd1TransViaExtdStatVar(void) {
     /* Initialize FSM (directly to testing state to reduce redundancy in tests;
        deviation from UML SM diagram where initial transition activity is
        executed first) */
-    SMhndlr_fsm_t fsm;
-    SMfsm_init((SMfsm_fsm_t*)&fsm, &SMhndlr_statZ);
+    SMstatHndlr_fsm_t fsm;
+    SMfsm_init((SMfsm_fsm_t*)&fsm, &SMstatHndlr_statZ);
         /* Explicit type upcast needed (safe here) */
     fsm.grd1 = true;
 
@@ -225,7 +225,7 @@ void test_SMfsm_takeTrueGrd1TransViaExtdStatVar(void) {
 }
 
 void test_SMfsm_takeInternalTrans(void) {
-    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMhndlr_statC;
+    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMstatHndlr_statC;
     SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
     bool evtHandled = false;
 
@@ -235,7 +235,7 @@ void test_SMfsm_takeInternalTrans(void) {
        deviation from UML SM diagram where initial transition activity is
        executed first) */
     SMfsm_fsm_t fsm;
-    SMfsm_init(&fsm, &SMhndlr_statC);
+    SMfsm_init(&fsm, &SMstatHndlr_statC);
 
     evtHandled = SMfsm_sendEvt(&fsm, SMHNDLR_EVT_C);
 
