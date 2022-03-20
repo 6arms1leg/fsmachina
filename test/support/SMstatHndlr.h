@@ -15,6 +15,9 @@
  * ==========
  */
 
+/* Global opaque pointer to FSM object */
+extern SMfsm_fsm_t* const SMstatHndlr_p_fsm;
+
 enum SMstatHndlr_evt {
     SMHNDLR_EVT_A = SMFSM_APP_EVT_START,
     SMHNDLR_EVT_B,
@@ -40,14 +43,16 @@ void SMstatHndlr_setGrd0(const bool grd);
  * The implementation of the state handler functions defines the state machine
  * configuration (i.e. the state topology).
  */
-bool SMstatHndlr_statInit(SMfsm_fsm_t* const me, const uint8_t evt);
 bool SMstatHndlr_statA(SMfsm_fsm_t* const me, const uint8_t evt);
 bool SMstatHndlr_statB(SMfsm_fsm_t* const me, const uint8_t evt);
 bool SMstatHndlr_statC(SMfsm_fsm_t* const me, const uint8_t evt);
 
-/* State handler function that uses the extended state variable `grd1`; derived
+/* State handler function that uses extended state variable `grd1`; derived
  * from `SMfsm_fsm_t` base class
  */
 bool SMstatHndlr_statZ(SMfsm_fsm_t* const me, const uint8_t evt);
+
+/* Constructor of FSM object */
+void SMstatHndlr_fsmCtor(void);
 
 #endif /* SMSTATHNDLR_H */

@@ -6,7 +6,14 @@
  * ==========
  */
 
-static bool pv_grd0 = false; /* Extended state variable */
+/* Private FSM instance */
+static SMfsm_fsm_t pv_fsm;
+
+/* Global opaque pointer to FSM object */
+SMfsm_fsm_t* const SMstatHndlr_p_fsm = &pv_fsm;
+
+/* Extended state variable */
+static bool pv_grd0 = false;
 
 /* OPERATIONS
  * ==========
@@ -19,7 +26,7 @@ void SMstatHndlr_setGrd0(const bool grd) {
 /* State handler functions
  */
 
-bool SMstatHndlr_statInit(SMfsm_fsm_t* const me, const uint8_t evt) {
+static bool statInit(SMfsm_fsm_t* const me, const uint8_t evt) {
     bool evtHandled = false;
 
     switch (evt) {
@@ -186,4 +193,8 @@ bool SMstatHndlr_statZ(SMfsm_fsm_t* const me, const uint8_t evt) {
     }
 
     return (evtHandled);
+}
+
+void SMstatHndlr_fsmCtor(void) {
+    SMfsm_init(&pv_fsm, &statInit);
 }
