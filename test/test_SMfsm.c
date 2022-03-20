@@ -12,7 +12,7 @@
 
 #include "SMfsm.h"
 
-#include "SMhndlr.h"
+#include "SMstatHndlr.h"
 #include "mock_SMactivity.h"
 
 /** \brief Run before every test */

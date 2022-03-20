@@ -1,6 +1,6 @@
 /** \file */
 
-#include "SMhndlr.h"
+#include "SMstatHndlr.h"
 
 /* ATTRIBUTES
  * ==========

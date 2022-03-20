@@ -1,7 +1,7 @@
 /** \file */
 
-#ifndef SMHNDLR_H
-#define SMHNDLR_H
+#ifndef SMSTATHNDLR_H
+#define SMSTATHNDLR_H
 
 #include "SMfsm.h"
 #include "SMactivity.h"
@@ -50,4 +50,4 @@ bool SMhndlr_statC(SMfsm_fsm_t* const me, const uint8_t evt);
  */
 bool SMhndlr_statZ(SMfsm_fsm_t* const me, const uint8_t evt);
 
-#endif /* SMHNDLR_H */
+#endif /* SMSTATHNDLR_H */
