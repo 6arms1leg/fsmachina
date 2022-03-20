@@ -56,7 +56,7 @@ The following loosely lists requirements, constraints, features and goals.
     * MISRA-C:2012 compliant
     * Static code analysis pass
     * No dynamic memory allocation (via `malloc()` or similar)
-    * SCM via Git with semantic versioning
+    * SCM via Git with [Semantic Versioning](https://semver.org)
 * Well documented (from requirements over architecture to detailed design),
   using Doxygen, Markdown, custom diagrams, UML
 * Traceability from requirements specification to implementation by
