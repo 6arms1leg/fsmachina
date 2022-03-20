@@ -2,7 +2,6 @@
 
 #include "main.h"
 
-int MAIN(void)
-{
-    return(0);
+int MAIN(void) {
+    return (0);
 }

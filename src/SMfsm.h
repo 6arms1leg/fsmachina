@@ -4,8 +4,7 @@
 #define SMFSM_H
 
 /* `"` used intentionally.  This allows the user to override and provide his
- * own implementation before falling back to libc.
- */
+   own implementation before falling back to libc. */
 #include "stdint.h"
 #include "stddef.h"
 #include "stdbool.h"
@@ -15,22 +14,18 @@
  * ==========
  */
 
-enum SMfsm_evt
-{
+enum SMfsm_evt {
     SMFSM_ENTRY = 0,
     SMFSM_EXIT,
     SMFSM_APP_EVT_START
 };
 
-/* Forward declaration because of cicrular dependencies */
-typedef struct SMfsm_fsm SMfsm_fsm_t;
+typedef struct SMfsm_fsm SMfsm_fsm_t; /* Forward decl. due to circular dep. */
 
-/* Important: The state handler functions with this signature must be reentrant
- */
 typedef bool (*SMfsm_p_hndlr_t)(SMfsm_fsm_t* const me, const uint8_t evt);
+    /* State handler functions with this signature must be reentrant */
 
-struct SMfsm_fsm
-{
+struct SMfsm_fsm {
     SMfsm_p_hndlr_t p_statHndlr;
 };
 

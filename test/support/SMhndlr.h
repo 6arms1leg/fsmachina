@@ -7,8 +7,7 @@
 #include "SMactivity.h"
 
 /* `"` used intentionally.  This allows the user to override and provide his
- * own implementation before falling back to libc.
- */
+   own implementation before falling back to libc. */
 #include "stdint.h"
 #include "stdbool.h"
 
@@ -16,28 +15,24 @@
  * ==========
  */
 
-enum SMhndlr_evt
-{
+enum SMhndlr_evt {
     SMHNDLR_EVT_A = SMFSM_APP_EVT_START,
     SMHNDLR_EVT_B,
     SMHNDLR_EVT_C,
     SMHNDLR_EVT_Z
 };
 
-/* New FSM structure with extended state variable `grd1`; derived from
- * `SMfsm_fsm_t` base class
- */
-typedef struct
-{
-    SMfsm_fsm_t super;
-    bool grd1;
+/* New FSM structure with extended state variable; derived from base class */
+typedef struct {
+    SMfsm_fsm_t super; /* Base class */
+    bool grd1; /* Extended state variable */
 } SMhndlr_fsm_t;
 
 /* OPERATIONS
  * ==========
  */
 
-/* Extended state variable `grd0` access operation */
+/* Extended state variable access operation */
 void SMhndlr_setGrd0(const bool grd);
 
 /* State handler functions
@@ -51,7 +46,8 @@ bool SMhndlr_statB(SMfsm_fsm_t* const me, const uint8_t evt);
 bool SMhndlr_statC(SMfsm_fsm_t* const me, const uint8_t evt);
 
 /* State handler function that uses the extended state variable `grd1`; derived
- * from `SMfsm_fsm_t` base class */
+ * from `SMfsm_fsm_t` base class
+ */
 bool SMhndlr_statZ(SMfsm_fsm_t* const me, const uint8_t evt);
 
 #endif /* SMHNDLR_H */
