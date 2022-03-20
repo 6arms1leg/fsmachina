@@ -6,7 +6,7 @@
  * ==========
  */
 
-void SMfsm_init(SMfsm_fsm_t* const me, const SMfsm_p_hndlr_t p_statHndlr) {
+void SMfsm_init(SMfsm_fsm_t* const me, const SMfsm_p_statHndlr_t p_statHndlr) {
     /* Sanity check (Design by Contract) */
     assert((NULL != me) &&
            (NULL != p_statHndlr));
@@ -20,13 +20,13 @@ bool SMfsm_sendEvt(SMfsm_fsm_t* const me, const uint8_t evt) {
     return ((*me->p_statHndlr)(me, evt));
 }
 
-SMfsm_p_hndlr_t SMfsm_getStat(const SMfsm_fsm_t* const me) {
+SMfsm_p_statHndlr_t SMfsm_getStat(const SMfsm_fsm_t* const me) {
     assert(NULL != me); /* Sanity check (Design by Contract) */
 
     return (me->p_statHndlr);
 }
 
-void SMfsm_trans(SMfsm_fsm_t* const me, const SMfsm_p_hndlr_t p_statHndlr) {
+void SMfsm_trans(SMfsm_fsm_t* const me, const SMfsm_p_statHndlr_t p_statHndlr) {
     /* Sanity check (Design by Contract) */
     assert((NULL != me) &&
            (NULL != p_statHndlr));

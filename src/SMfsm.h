@@ -22,23 +22,23 @@ enum SMfsm_evt {
 
 typedef struct SMfsm_fsm SMfsm_fsm_t; /* Forward decl. due to circular dep. */
 
-typedef bool (*SMfsm_p_hndlr_t)(SMfsm_fsm_t* const me, const uint8_t evt);
+typedef bool (*SMfsm_p_statHndlr_t)(SMfsm_fsm_t* const me, const uint8_t evt);
     /* State handler functions with this signature must be reentrant */
 
 struct SMfsm_fsm {
-    SMfsm_p_hndlr_t p_statHndlr;
+    SMfsm_p_statHndlr_t p_statHndlr;
 };
 
 /* OPERATIONS
  * ==========
  */
 
-void SMfsm_init(SMfsm_fsm_t* const me, const SMfsm_p_hndlr_t p_statHndlr);
+void SMfsm_init(SMfsm_fsm_t* const me, const SMfsm_p_statHndlr_t p_statHndlr);
 
 bool SMfsm_sendEvt(SMfsm_fsm_t* const me, const uint8_t evt);
 
-SMfsm_p_hndlr_t SMfsm_getStat(const SMfsm_fsm_t* const me);
+SMfsm_p_statHndlr_t SMfsm_getStat(const SMfsm_fsm_t* const me);
 
-void SMfsm_trans(SMfsm_fsm_t* const me, const SMfsm_p_hndlr_t p_statHndlr);
+void SMfsm_trans(SMfsm_fsm_t* const me, const SMfsm_p_statHndlr_t p_statHndlr);
 
 #endif /* SMFSM_H */

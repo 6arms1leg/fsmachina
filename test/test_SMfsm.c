@@ -48,8 +48,8 @@ void test_SMfsm_assertNoNullPtrsOnTrans(void) {
 }
 
 void test_SMfsm_initAndQueryStat(void) {
-    const SMfsm_p_hndlr_t p_statHndlrExp = &SMhndlr_statInit;
-    SMfsm_p_hndlr_t p_statHndlrAct = NULL;
+    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMhndlr_statInit;
+    SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
 
     /* Initialize FSM */
     SMfsm_fsm_t fsm;
@@ -61,8 +61,8 @@ void test_SMfsm_initAndQueryStat(void) {
 }
 
 void test_SMfsm_ignoreUnknownEvt(void) {
-    const SMfsm_p_hndlr_t p_statHndlrExp = &SMhndlr_statInit;
-    SMfsm_p_hndlr_t p_statHndlrAct = NULL;
+    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMhndlr_statInit;
+    SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
     bool evtHandled = true;
 
     SMactivity_ignore_Expect();
@@ -81,8 +81,8 @@ void test_SMfsm_ignoreUnknownEvt(void) {
 }
 
 void test_SMfsm_transActivitySequence(void) {
-    const SMfsm_p_hndlr_t p_statHndlrExp = &SMhndlr_statB;
-    SMfsm_p_hndlr_t p_statHndlrAct = NULL;
+    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMhndlr_statB;
+    SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
 
     SMactivity_exit_Expect();
     SMactivity_entry_Expect();
@@ -101,8 +101,8 @@ void test_SMfsm_transActivitySequence(void) {
 }
 
 void test_SMfsm_takeInitTrans(void) {
-    const SMfsm_p_hndlr_t p_statHndlrExp = &SMhndlr_statA;
-    SMfsm_p_hndlr_t p_statHndlrAct = NULL;
+    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMhndlr_statA;
+    SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
     bool evtHandled = false;
 
     SMactivity_entry_Expect();
@@ -124,8 +124,8 @@ void test_SMfsm_takeInitTrans(void) {
 }
 
 void test_SMfsm_takeNormalTrans(void) {
-    const SMfsm_p_hndlr_t p_statHndlrExp = &SMhndlr_statB;
-    SMfsm_p_hndlr_t p_statHndlrAct = NULL;
+    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMhndlr_statB;
+    SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
     bool evtHandled = false;
 
     SMactivity_trans_Expect();
@@ -148,8 +148,8 @@ void test_SMfsm_takeNormalTrans(void) {
 }
 
 void test_SMfsm_takeTransToSelf(void) {
-    const SMfsm_p_hndlr_t p_statHndlrExp = &SMhndlr_statB;
-    SMfsm_p_hndlr_t p_statHndlrAct = NULL;
+    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMhndlr_statB;
+    SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
     bool evtHandled = false;
 
     SMactivity_trans_Expect();
@@ -172,8 +172,8 @@ void test_SMfsm_takeTransToSelf(void) {
 }
 
 void test_SMfsm_takeTrueGrd0TransViaExtdStatVar(void) {
-    const SMfsm_p_hndlr_t p_statHndlrExp = &SMhndlr_statB;
-    SMfsm_p_hndlr_t p_statHndlrAct = NULL;
+    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMhndlr_statB;
+    SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
     bool evtHandled = false;
 
     SMactivity_trans_Expect();
@@ -197,8 +197,8 @@ void test_SMfsm_takeTrueGrd0TransViaExtdStatVar(void) {
 }
 
 void test_SMfsm_takeTrueGrd1TransViaExtdStatVar(void) {
-    const SMfsm_p_hndlr_t p_statHndlrExp = &SMhndlr_statZ;
-    SMfsm_p_hndlr_t p_statHndlrAct = NULL;
+    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMhndlr_statZ;
+    SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
     bool evtHandled = false;
 
     SMactivity_trans_Expect();
@@ -225,8 +225,8 @@ void test_SMfsm_takeTrueGrd1TransViaExtdStatVar(void) {
 }
 
 void test_SMfsm_takeInternalTrans(void) {
-    const SMfsm_p_hndlr_t p_statHndlrExp = &SMhndlr_statC;
-    SMfsm_p_hndlr_t p_statHndlrAct = NULL;
+    const SMfsm_p_statHndlr_t p_statHndlrExp = &SMhndlr_statC;
+    SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
     bool evtHandled = false;
 
     SMactivity_trans_Expect();
