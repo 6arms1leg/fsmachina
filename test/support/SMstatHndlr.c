@@ -35,7 +35,7 @@ static bool statInit(SMfsm_fsm_t* const me, const uint8_t evt) {
         case SMFSM_ENTRY: {
             SMactivity_entry();
             SMactivity_transInit();
-            SMfsm_trans(me, SMstatHndlr_statA);
+            SMfsm_trans(me, &SMstatHndlr_statA);
             evtHandled = true;
             break;
         }
@@ -68,7 +68,7 @@ bool SMstatHndlr_statA(SMfsm_fsm_t* const me, const uint8_t evt) {
         }
         case SMHNDLR_EVT_B: {
             SMactivity_trans();
-            SMfsm_trans(me, SMstatHndlr_statB);
+            SMfsm_trans(me, &SMstatHndlr_statB);
             evtHandled = true;
             break;
         }
@@ -96,13 +96,13 @@ bool SMstatHndlr_statB(SMfsm_fsm_t* const me, const uint8_t evt) {
         }
         case SMHNDLR_EVT_B: {
             SMactivity_trans();
-            SMfsm_trans(me, SMstatHndlr_statB);
+            SMfsm_trans(me, &SMstatHndlr_statB);
             evtHandled = true;
             break;
         }
         case SMHNDLR_EVT_C: {
             SMactivity_trans();
-            SMfsm_trans(me, SMstatHndlr_statC);
+            SMfsm_trans(me, &SMstatHndlr_statC);
             evtHandled = true;
             break;
         }
@@ -130,19 +130,19 @@ bool SMstatHndlr_statC(SMfsm_fsm_t* const me, const uint8_t evt) {
         }
         case SMHNDLR_EVT_A: {
             SMactivity_trans();
-            SMfsm_trans(me, SMstatHndlr_statA);
+            SMfsm_trans(me, &SMstatHndlr_statA);
             evtHandled = true;
             break;
         }
         case SMHNDLR_EVT_B: {
             if (false == pv_grd0) {
                 SMactivity_trans();
-                SMfsm_trans(me, SMstatHndlr_statC);
+                SMfsm_trans(me, &SMstatHndlr_statC);
                 evtHandled = true;
             }
             else if (true == pv_grd0) {
                 SMactivity_trans();
-                SMfsm_trans(me, SMstatHndlr_statB);
+                SMfsm_trans(me, &SMstatHndlr_statB);
                 evtHandled = true;
             }
             else {;} /* Do nothing */
@@ -184,7 +184,7 @@ bool SMstatHndlr_statZ(SMfsm_fsm_t* const me, const uint8_t evt) {
                signature might suggests. */
             if (true == ((SMstatHndlr_fsm_t*)me)->grd1) {
                 SMactivity_trans();
-                SMfsm_trans(me, SMstatHndlr_statZ);
+                SMfsm_trans(me, &SMstatHndlr_statZ);
                 evtHandled = true;
             }
             break;
