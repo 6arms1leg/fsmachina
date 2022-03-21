@@ -67,7 +67,7 @@ Quality metrics:
 | Metric                                       | Target   |
 | -------------------------------------------- | -------- |
 | No. of parameters/arguments (per func.)      | \<= 6    |
-| No. of instructions (per func.)              | \<= 100  |
+| No. of instructions (per func.)              | \<= 60   |
 | No. of nested control structures (per func.) | \<= 5    |
 | Cyclomatic complexity number (per func.)     | \<= 10   |
 | Comment rate (per file)                      | \>= 20 % |
