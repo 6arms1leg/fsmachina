@@ -90,7 +90,7 @@ values of these extended state variables.
 
 This option is based on the method of deriving a new class from the
 framework-provided base class by creating a new struct with the framework’s
-`stc_fsm_t` struct as its first member.
+`SMfsm_fsm_t` struct as its first member.
 Extended state variables can now be implemented as additional struct members.
 
 However, this implies that all access of the extended state variables from
@@ -100,20 +100,20 @@ These explicit downcasts are safe as long as the `me` input argument always
 points to a derived class instance.
 In other words, state handler functions associated with this derived state
 maschine class must only be used with `me` pointers of the derived struct type
-and never directly with the framework’s `stc_fsm_t` struct (base class), as the
-state handler function’s signature might otherwise suggest.
+and never directly with the framework’s `SMfsm_fsm_t` struct (base class), as
+the state handler function’s signature might otherwise suggest.
 
 Furthermore, when using the framework’s API operations (outside of the
 associated state handler functions), it is necessary to explicitly upcast the
-`me` input argument pointer to the framework-provided `stc_fsm_t` struct (base
-class).
+`me` input argument pointer to the framework-provided `SMfsm_fsm_t` struct
+(base class).
 
 ## Run-to-completion steps and critical regions
 
 If there are hardware interrupts enabled in the system that can interfere with
 the run-to-completion steps of the framework’s FSM, the transitions can be
 placed within critical regions in the user code.
-That is, disabling interrupts directly before the `fn_fsm_tran()` function call
+That is, disabling interrupts directly before the `SMfsm_trans()` function call
 and enabling them again directly after in the state handler functions.
 
 ## Extension for asynchronous behaviour
