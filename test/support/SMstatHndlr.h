@@ -3,13 +3,10 @@
 #ifndef SMSTATHNDLR_H
 #define SMSTATHNDLR_H
 
-#include "SMfsm.h"
-#include "SMactivity.h"
+#include <stdint.h>
+#include <stdbool.h>
 
-/* `"` used intentionally.  This allows the user to override and provide his
-   own implementation before falling back to libc. */
-#include "stdint.h"
-#include "stdbool.h"
+#include "SMfsm.h"
 
 enum SMstatHndlr_evt {
     SMHNDLR_EVT_A = SMFSM_APP_EVT_START,

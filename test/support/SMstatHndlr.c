@@ -2,6 +2,8 @@
 
 #include "SMstatHndlr.h"
 
+#include "SMactivity.h"
+
 /* ATTRIBUTES
  * ==========
  */
