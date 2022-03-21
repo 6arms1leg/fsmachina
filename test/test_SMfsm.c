@@ -15,6 +15,10 @@
 #include "SMstatHndlr.h"
 #include "mock_SMactivity.h"
 
+/* OPERATIONS
+ * ==========
+ */
+
 /** \brief Run before every test */
 void setUp(void) {
     SMstatHndlr_fsmCtor(); /* Init. FSM object */

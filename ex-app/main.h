@@ -10,6 +10,10 @@
 #define MAIN testable_main
 #endif
 
+/* OPERATIONS
+ * ==========
+ */
+
 /** \brief Program entry point */
 int MAIN(void);
 

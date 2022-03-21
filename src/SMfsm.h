@@ -10,10 +10,6 @@
 #include "stdbool.h"
 #include "assert.h" /* For sanity checks (Design by Contract) */
 
-/* ATTRIBUTES
- * ==========
- */
-
 enum SMfsm_evt {
     SMFSM_ENTRY = 0,
     SMFSM_EXIT,

@@ -11,13 +11,6 @@
 #include "stdint.h"
 #include "stdbool.h"
 
-/* ATTRIBUTES
- * ==========
- */
-
-/* Global opaque pointer to FSM object */
-extern SMfsm_fsm_t* const SMstatHndlr_p_fsm;
-
 enum SMstatHndlr_evt {
     SMHNDLR_EVT_A = SMFSM_APP_EVT_START,
     SMHNDLR_EVT_B,
@@ -30,6 +23,13 @@ typedef struct {
     SMfsm_fsm_t super; /* Base class */
     bool grd1; /* Extended state variable */
 } SMstatHndlr_fsm_t;
+
+/* ATTRIBUTES
+ * ==========
+ */
+
+/* Global opaque pointer to FSM object */
+extern SMfsm_fsm_t* const SMstatHndlr_p_fsm;
 
 /* OPERATIONS
  * ==========
