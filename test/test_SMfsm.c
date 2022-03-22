@@ -72,7 +72,7 @@ void test_SMfsm_ignoreUnknownEvt(void) {
        UML SM diagram deviation where init. trans. activity is exec. first) */
     SMfsm_init(SMstatHndlr_p_fsm, p_statHndlrExp);
 
-    evtHandled = SMfsm_sendEvt(SMstatHndlr_p_fsm, SMHNDLR_EVT_C);
+    evtHandled = SMfsm_sendEvt(SMstatHndlr_p_fsm, SMSTATHNDLR_EVT_C);
 
     TEST_ASSERT_FALSE(evtHandled);
 
@@ -131,7 +131,7 @@ void test_SMfsm_takeNormalTrans(void) {
        UML SM diagram deviation where init. trans. activity is exec. first) */
     SMfsm_init(SMstatHndlr_p_fsm, &SMstatHndlr_statA);
 
-    evtHandled = SMfsm_sendEvt(SMstatHndlr_p_fsm, SMHNDLR_EVT_B);
+    evtHandled = SMfsm_sendEvt(SMstatHndlr_p_fsm, SMSTATHNDLR_EVT_B);
 
     TEST_ASSERT_TRUE(evtHandled);
 
@@ -153,7 +153,7 @@ void test_SMfsm_takeTransToSelf(void) {
        UML SM diagram deviation where init. trans. activity is exec. first) */
     SMfsm_init(SMstatHndlr_p_fsm, p_statHndlrExp);
 
-    evtHandled = SMfsm_sendEvt(SMstatHndlr_p_fsm, SMHNDLR_EVT_B);
+    evtHandled = SMfsm_sendEvt(SMstatHndlr_p_fsm, SMSTATHNDLR_EVT_B);
 
     TEST_ASSERT_TRUE(evtHandled);
 
@@ -176,7 +176,7 @@ void test_SMfsm_takeTrueGrd0TransViaExtdStatVar(void) {
     SMfsm_init(SMstatHndlr_p_fsm, &SMstatHndlr_statC);
     SMstatHndlr_setGrd0(true); /* Set extended state variable */
 
-    evtHandled = SMfsm_sendEvt(SMstatHndlr_p_fsm, SMHNDLR_EVT_B);
+    evtHandled = SMfsm_sendEvt(SMstatHndlr_p_fsm, SMSTATHNDLR_EVT_B);
 
     TEST_ASSERT_TRUE(evtHandled);
 
@@ -202,7 +202,7 @@ void test_SMfsm_takeTrueGrd1TransViaExtdStatVar(void) {
         /* Explicit type upcast needed (safe here) */
     fsm.grd1 = true; /* Set extended state variable */
 
-    evtHandled = SMfsm_sendEvt((SMfsm_fsm_t*)&fsm, SMHNDLR_EVT_Z);
+    evtHandled = SMfsm_sendEvt((SMfsm_fsm_t*)&fsm, SMSTATHNDLR_EVT_Z);
         /* Explicit type upcast needed (safe here) */
 
     TEST_ASSERT_TRUE(evtHandled);
@@ -224,7 +224,7 @@ void test_SMfsm_takeInternalTrans(void) {
        UML SM diagram deviation where init. trans. activity is exec. first) */
     SMfsm_init(SMstatHndlr_p_fsm, p_statHndlrExp);
 
-    evtHandled = SMfsm_sendEvt(SMstatHndlr_p_fsm, SMHNDLR_EVT_C);
+    evtHandled = SMfsm_sendEvt(SMstatHndlr_p_fsm, SMSTATHNDLR_EVT_C);
 
     TEST_ASSERT_TRUE(evtHandled);
 

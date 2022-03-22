@@ -66,7 +66,7 @@ bool SMstatHndlr_statA(SMfsm_fsm_t* const me, const uint8_t evt) {
             evtHandled = true;
             break;
         }
-        case SMHNDLR_EVT_B: {
+        case SMSTATHNDLR_EVT_B: {
             SMactivity_trans();
             SMfsm_trans(me, &SMstatHndlr_statB);
             evtHandled = true;
@@ -94,13 +94,13 @@ bool SMstatHndlr_statB(SMfsm_fsm_t* const me, const uint8_t evt) {
             evtHandled = true;
             break;
         }
-        case SMHNDLR_EVT_B: {
+        case SMSTATHNDLR_EVT_B: {
             SMactivity_trans();
             SMfsm_trans(me, &SMstatHndlr_statB);
             evtHandled = true;
             break;
         }
-        case SMHNDLR_EVT_C: {
+        case SMSTATHNDLR_EVT_C: {
             SMactivity_trans();
             SMfsm_trans(me, &SMstatHndlr_statC);
             evtHandled = true;
@@ -128,13 +128,13 @@ bool SMstatHndlr_statC(SMfsm_fsm_t* const me, const uint8_t evt) {
             evtHandled = true;
             break;
         }
-        case SMHNDLR_EVT_A: {
+        case SMSTATHNDLR_EVT_A: {
             SMactivity_trans();
             SMfsm_trans(me, &SMstatHndlr_statA);
             evtHandled = true;
             break;
         }
-        case SMHNDLR_EVT_B: {
+        case SMSTATHNDLR_EVT_B: {
             if (false == pv_grd0) {
                 SMactivity_trans();
                 SMfsm_trans(me, &SMstatHndlr_statC);
@@ -148,7 +148,7 @@ bool SMstatHndlr_statC(SMfsm_fsm_t* const me, const uint8_t evt) {
             else {;} /* Do nothing */
             break;
         }
-        case SMHNDLR_EVT_C: {
+        case SMSTATHNDLR_EVT_C: {
             SMactivity_trans();
             evtHandled = true;
             break;
@@ -175,7 +175,7 @@ bool SMstatHndlr_statZ(SMfsm_fsm_t* const me, const uint8_t evt) {
             evtHandled = true;
             break;
         }
-        case SMHNDLR_EVT_Z: {
+        case SMSTATHNDLR_EVT_Z: {
             /* Explicit type downcast needed (safe as long as `me` input
                argument always points to derived class instance).
                In other words, this state handler function must only be used

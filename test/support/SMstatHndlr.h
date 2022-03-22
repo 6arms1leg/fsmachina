@@ -9,10 +9,10 @@
 #include "SMfsm.h"
 
 enum SMstatHndlr_evt {
-    SMHNDLR_EVT_A = SMFSM_APP_EVT_START,
-    SMHNDLR_EVT_B,
-    SMHNDLR_EVT_C,
-    SMHNDLR_EVT_Z
+    SMSTATHNDLR_EVT_A = SMFSM_APP_EVT_START,
+    SMSTATHNDLR_EVT_B,
+    SMSTATHNDLR_EVT_C,
+    SMSTATHNDLR_EVT_Z
 };
 
 /* New FSM structure with extended state variable; derived from base class */
