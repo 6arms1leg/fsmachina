@@ -15,7 +15,7 @@ static SMfsm_fsm_t pv_fsm;
 SMfsm_fsm_t* const SMstatHndlr_p_fsm = &pv_fsm;
 
 /* Extended state variable */
-static bool pv_grd0 = false;
+static bool pv_grd0;
 
 /* OPERATIONS
  * ==========
