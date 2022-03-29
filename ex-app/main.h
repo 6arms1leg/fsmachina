@@ -8,7 +8,7 @@
 #define MAIN main
 #else
 #define MAIN testable_main
-#endif
+#endif /* TEST */
 
 /* OPERATIONS
  * ==========

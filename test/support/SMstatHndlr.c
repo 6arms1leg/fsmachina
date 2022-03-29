@@ -109,7 +109,7 @@ bool SMstatHndlr_statB(SMfsm_fsm_t* const me, const uint8_t evt) {
         default: {
             SMactivity_ignore(); /* Ignore unknown events */
         }
-    }
+    } /* switch (...) */
 
     return (evtHandled);
 }
@@ -156,7 +156,7 @@ bool SMstatHndlr_statC(SMfsm_fsm_t* const me, const uint8_t evt) {
         default: {
             SMactivity_ignore(); /* Ignore unknown events */
         }
-    }
+    } /* switch (...) */
 
     return (evtHandled);
 }
@@ -192,7 +192,7 @@ bool SMstatHndlr_statZ(SMfsm_fsm_t* const me, const uint8_t evt) {
         default: {
             SMactivity_ignore(); /* Ignore unknown events */
         }
-    }
+    } /* switch (...) */
 
     return (evtHandled);
 }
