@@ -15,18 +15,13 @@ enum SMstatHndlr_evt {
     SMSTATHNDLR_EVT_Z
 };
 
-/* New FSM structure with extended state variable; derived from base class */
-typedef struct {
-    SMfsm_fsm_t super; /* Base class */
-    bool grd1; /* Extended state variable */
-} SMstatHndlr_fsm_t;
-
 /* ATTRIBUTES
  * ==========
  */
 
-/* Global opaque pointer to FSM object */
+/* Global opaque pointers to FSM objects */
 extern SMfsm_fsm_t* const SMstatHndlr_p_fsm;
+extern SMfsm_fsm_t* const SMstatHndlr_p_fsmZ;
 
 /* OPERATIONS
  * ==========
@@ -49,7 +44,8 @@ bool SMstatHndlr_statC(SMfsm_fsm_t* const me, const uint8_t evt);
  */
 bool SMstatHndlr_statZ(SMfsm_fsm_t* const me, const uint8_t evt);
 
-/* Constructor of FSM object */
+/* Constructors of FSM objects */
 void SMstatHndlr_fsmCtor(void);
+void SMstatHndlr_fsmZCtor(void);
 
 #endif /* SMSTATHNDLR_H */

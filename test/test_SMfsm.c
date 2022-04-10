@@ -200,21 +200,13 @@ void test_SMfsm_takeTrueGrd1TransViaExtdStatVar(void) {
     SMactivity_exit_Expect();
     SMactivity_entry_Expect();
 
-    /* Init. derived FSM (directly to testing state to reduce redundancy in
-       tests; UML SM diagram deviation where init. trans. activity is exec.
-       first) */
-    SMstatHndlr_fsm_t fsm;
-    SMfsm_init((SMfsm_fsm_t*)&fsm, p_statHndlrExp);
-        /* Explicit type upcast needed (safe here) */
-    fsm.grd1 = true; /* Set extended state variable */
+    SMstatHndlr_fsmZCtor(); /* Init. derived FSM object */
 
-    evtHandled = SMfsm_sendEvt((SMfsm_fsm_t*)&fsm, SMSTATHNDLR_EVT_Z);
-        /* Explicit type upcast needed (safe here) */
+    evtHandled = SMfsm_sendEvt(SMstatHndlr_p_fsmZ, SMSTATHNDLR_EVT_Z);
 
     TEST_ASSERT_TRUE(evtHandled);
 
-    p_statHndlrAct = SMfsm_getStat((SMfsm_fsm_t*)&fsm);
-        /* Explicit type upcast needed (safe here) */
+    p_statHndlrAct = SMfsm_getStat(SMstatHndlr_p_fsmZ);
 
     TEST_ASSERT_EQUAL_PTR(p_statHndlrExp, p_statHndlrAct);
 }

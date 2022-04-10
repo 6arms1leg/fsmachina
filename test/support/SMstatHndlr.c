@@ -4,15 +4,24 @@
 
 #include "SMactivity.h"
 
+/* New FSM structure with extended state variable; derived from base class */
+typedef struct {
+    SMfsm_fsm_t base; /* Base class */
+    bool grd1; /* Extended state variable */
+} SMstatHndlr_fsm_t;
+
 /* ATTRIBUTES
  * ==========
  */
 
-/* Private FSM instance */
+/* Private FSM instances */
 static SMfsm_fsm_t pv_fsm;
+static SMstatHndlr_fsm_t pv_fsmZ;
 
-/* Global opaque pointer to FSM object */
+/* Global opaque pointers to FSM objects */
 SMfsm_fsm_t* const SMstatHndlr_p_fsm = &pv_fsm;
+SMfsm_fsm_t* const SMstatHndlr_p_fsmZ = (SMfsm_fsm_t*)&pv_fsmZ;
+    /* Explicit type upcast needed (safe here) */
 
 /* Extended state variable */
 static bool pv_grd0;
@@ -199,4 +208,10 @@ bool SMstatHndlr_statZ(SMfsm_fsm_t* const me, const uint8_t evt) {
 
 void SMstatHndlr_fsmCtor(void) {
     SMfsm_init(&pv_fsm, &statInit);
+}
+
+void SMstatHndlr_fsmZCtor(void) {
+    SMfsm_init((SMfsm_fsm_t*)&pv_fsmZ, &SMstatHndlr_statZ);
+        /* Explicit type upcast needed (safe here) */
+    pv_fsmZ.grd1 = true; /* Set extended state variable */
 }
