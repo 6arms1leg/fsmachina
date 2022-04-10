@@ -29,13 +29,13 @@ void tearDown(void) {
     SMstatHndlr_setGrd0(false); /* Reset extended state variable */
 }
 
-void test_SMfsm_assertNoNullPtrsOnInit(void) {
+void test_SMfsm_assertNoNullPtrOnInit(void) {
     TEST_ASSERT_FAIL_ASSERT(SMfsm_init(NULL, &SMstatHndlr_statA));
     TEST_ASSERT_FAIL_ASSERT(SMfsm_init(SMstatHndlr_p_fsm, NULL));
         /* Attempt to incorrectly re-init. FSM */
 }
 
-void test_SMfsm_assertNoNullPtrsOnSendEvt(void) {
+void test_SMfsm_assertNoNullPtrOnSendEvt(void) {
     SMfsm_fsm_t fsm = {0}; /* No init. (`fsm->p_statHndlr == NULL`) */
 
     TEST_ASSERT_FAIL_ASSERT((void)SMfsm_sendEvt(NULL, 0u));
@@ -46,7 +46,7 @@ void test_SMfsm_assertNoNullPtrOnGetStat(void) {
     TEST_ASSERT_FAIL_ASSERT((void)SMfsm_getStat(NULL));
 }
 
-void test_SMfsm_assertNoNullPtrsOnTrans(void) {
+void test_SMfsm_assertNoNullPtrOnTrans(void) {
     SMfsm_fsm_t fsm = {0}; /* No init. (`fsm->p_statHndlr == NULL`) */
 
     TEST_ASSERT_FAIL_ASSERT(SMfsm_trans(NULL, &SMstatHndlr_statA));
