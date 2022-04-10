@@ -35,8 +35,11 @@ void test_SMfsm_assertNoNullPtrsOnInit(void) {
         /* Attempt to incorrectly re-init. FSM */
 }
 
-void test_SMfsm_assertNoNullPtrOnSendEvt(void) {
+void test_SMfsm_assertNoNullPtrsOnSendEvt(void) {
+    SMfsm_fsm_t fsm = {0}; /* No init. (`fsm->p_statHndlr == NULL`) */
+
     TEST_ASSERT_FAIL_ASSERT((void)SMfsm_sendEvt(NULL, 0u));
+    TEST_ASSERT_FAIL_ASSERT((void)SMfsm_sendEvt(&fsm, 0u));
 }
 
 void test_SMfsm_assertNoNullPtrOnGetStat(void) {
@@ -44,7 +47,10 @@ void test_SMfsm_assertNoNullPtrOnGetStat(void) {
 }
 
 void test_SMfsm_assertNoNullPtrsOnTrans(void) {
+    SMfsm_fsm_t fsm = {0}; /* No init. (`fsm->p_statHndlr == NULL`) */
+
     TEST_ASSERT_FAIL_ASSERT(SMfsm_trans(NULL, &SMstatHndlr_statA));
+    TEST_ASSERT_FAIL_ASSERT(SMfsm_trans(&fsm, &SMstatHndlr_statA));
     TEST_ASSERT_FAIL_ASSERT(SMfsm_trans(SMstatHndlr_p_fsm, NULL));
 }
 
