@@ -40,6 +40,7 @@ The following loosely lists requirements, constraints, features and goals.
 
 <!-- Separator -->
 
+* "Design by Contract" approach via "dynamic" assertions (`assert(...)`)
 * Low impact on technical budgets
     * Low CPU utilization
     * Small memory footprint in ROM (text, data) and RAM (data, heap, stack)
