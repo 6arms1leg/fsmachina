@@ -8,6 +8,7 @@
 
 #include "SMfsm.h"
 
+/** \brief User-defined state machine events */
 enum SMstatHndlr_evt {
     SMSTATHNDLR_EVT_A = SMFSM_APP_EVT_START,
     SMSTATHNDLR_EVT_B,
@@ -19,33 +20,45 @@ enum SMstatHndlr_evt {
  * ==========
  */
 
-/* Global opaque pointers to FSM objects */
+/**
+ * \{
+ * \brief Global opaque pointers to FSM objects
+ */
 extern SMfsm_fsm_t* const SMstatHndlr_p_fsm;
 extern SMfsm_fsm_t* const SMstatHndlr_p_fsmZ;
+/** \} */
 
 /* OPERATIONS
  * ==========
  */
 
-/* Extended state variable access operation */
+/** \brief Set extended state variable */
 void SMstatHndlr_setGrd0(const bool grd);
 
-/* State handler functions
+/**
+ * \{
+ * \brief State handler functions
  *
- * The implementation of the state handler functions defines the state machine
- * configuration (i.e. the state topology).
+ * Implementation of state handler functions defines state machine
+ * configuration (i.e. state topology).
  */
 bool SMstatHndlr_statA(SMfsm_fsm_t* const me, const uint8_t evt);
 bool SMstatHndlr_statB(SMfsm_fsm_t* const me, const uint8_t evt);
 bool SMstatHndlr_statC(SMfsm_fsm_t* const me, const uint8_t evt);
+/** \} */
 
-/* State handler function that uses extended state variable `grd1`; derived
- * from `SMfsm_fsm_t` base class
+/**
+ * \brief State handler function that uses extended state variable `grd1`;
+ * derived from `SMfsm_fsm_t` base class
  */
 bool SMstatHndlr_statZ(SMfsm_fsm_t* const me, const uint8_t evt);
 
-/* Constructors of FSM objects */
+/**
+ * \{
+ * \brief Constructors of FSM objects
+ */
 void SMstatHndlr_fsmCtor(void);
 void SMstatHndlr_fsmZCtor(void);
+/** \} */
 
 #endif /* SMSTATHNDLR_H */

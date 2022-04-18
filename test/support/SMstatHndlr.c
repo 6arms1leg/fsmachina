@@ -4,10 +4,13 @@
 
 #include "SMactivity.h"
 
-/* New FSM structure with extended state variable; derived from base class */
+/**
+ * \brief New FSM structure with extended state variable; derived from base
+ * class
+ */
 typedef struct {
-    SMfsm_fsm_t base; /* Base class */
-    bool grd1; /* Extended state variable */
+    SMfsm_fsm_t base; /**< \brief Base class */
+    bool grd1; /**< \brief Extended state variable */
 } SMstatHndlr_fsm_t;
 
 /* ATTRIBUTES
@@ -144,17 +147,18 @@ bool SMstatHndlr_statC(SMfsm_fsm_t* const me, const uint8_t evt) {
             break;
         }
         case SMSTATHNDLR_EVT_B: {
-            if (false == pv_grd0) {
+            /* Trans. guard */
+            if (false == pv_grd0) { /* Guard condition false? */
                 SMactivity_trans();
-                SMfsm_trans(me, &SMstatHndlr_statC);
+                SMfsm_trans(me, &SMstatHndlr_statC); /* Trans. to self */
                 evtHandled = true;
             }
-            else if (true == pv_grd0) {
+            else if (true == pv_grd0) { /* Guard condition true? */
                 SMactivity_trans();
                 SMfsm_trans(me, &SMstatHndlr_statB);
                 evtHandled = true;
             }
-            else {;} /* Do nothing */
+            else {;} /* Do nothing (MISRA-required) */
             break;
         }
         case SMSTATHNDLR_EVT_C: {
@@ -170,6 +174,8 @@ bool SMstatHndlr_statC(SMfsm_fsm_t* const me, const uint8_t evt) {
     return (evtHandled);
 }
 
+/* Only used to demonstrate utilization of extended state variables via
+   inheritance */
 bool SMstatHndlr_statZ(SMfsm_fsm_t* const me, const uint8_t evt) {
     bool evtHandled = false;
 
@@ -185,15 +191,16 @@ bool SMstatHndlr_statZ(SMfsm_fsm_t* const me, const uint8_t evt) {
             break;
         }
         case SMSTATHNDLR_EVT_Z: {
-            /* Explicit type downcast needed (safe as long as `me` input
+            /* Trans. guard:
+               Explicit type downcast needed (safe as long as `me` input
                argument always points to derived class instance).
                In other words, this state handler function must only be used
                with `me` pointers of type `SMstatHndlr_fsm_t*` (derived class)
                and never `SMfsm_fsm_t` (base class), as the function’s
-               signature might suggests. */
-            if (true == ((SMstatHndlr_fsm_t*)me)->grd1) {
+               signature might suggest. */
+            if (true == ((SMstatHndlr_fsm_t*)me)->grd1) { /* Guard cond. true? */
                 SMactivity_trans();
-                SMfsm_trans(me, &SMstatHndlr_statZ);
+                SMfsm_trans(me, &SMstatHndlr_statZ); /* Trans. to self */
                 evtHandled = true;
             }
             break;
@@ -205,6 +212,9 @@ bool SMstatHndlr_statZ(SMfsm_fsm_t* const me, const uint8_t evt) {
 
     return (evtHandled);
 }
+
+/* FSM object contructor functions
+ */
 
 void SMstatHndlr_fsmCtor(void) {
     SMfsm_init(&pv_fsm, &statInit);
