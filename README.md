@@ -4,11 +4,11 @@ embedded, embedded-systems, finite-state-machine, framework, fsm,
 state-machine, synchronous
 -->
 
-# FSMachina - Simple finite state maschine framework
+# FSMachina - Simple finite state machine framework
 
 This framework employs a simple and tiny
 
-*synchronous, non-hierarchical, finite state maschine*
+*synchronous, non-hierarchical, finite state machine*
 
 to manage software system states.
 
@@ -16,7 +16,7 @@ to manage software system states.
 
 The following loosely lists requirements, constraints, features and goals.
 
-* Synchronous, non-hierarchical, finite state maschine for real-time
+* Synchronous, non-hierarchical, finite state machine for real-time
   applications in embedded systems
 * Partly UML-compliant
 * Implementation of states by reentrant state handler functions
@@ -27,7 +27,7 @@ The following loosely lists requirements, constraints, features and goals.
 * UML transition actions are supported but only in a different order:
   transition action (implemented within the source state),
   exit action (of source state), entry action (of target state)
-* Hierarchical state maschine topologies can be implemented by flattenig the
+* Hierarchical state machine topologies can be implemented by flattenig the
   state space (this topology transformation is always possible)
 
 <!-- Separator -->
@@ -100,7 +100,7 @@ must be downcasted.
 These explicit downcasts are safe as long as the `me` input argument always
 points to a derived class instance.
 In other words, state handler functions associated with this derived state
-maschine class must only be used with `me` pointers of the derived struct type
+machine class must only be used with `me` pointers of the derived struct type
 and never directly with the framework’s `SMfsm_fsm_t` struct (base class), as
 the state handler function’s signature might otherwise suggest.
 
