@@ -45,14 +45,14 @@ static bool statInit(SMfsm_fsm_t* const me, const uint8_t evt) {
 
     switch (evt) {
         case SMFSM_ENTRY: {
-            SMactivity_entry();
-            SMactivity_transInit();
+            SMactivity_entry('0');
+            SMactivity_trans('0', 'A');
             SMfsm_trans(me, &SMstatHndlr_statA);
             evtHandled = true;
             break;
         }
         case SMFSM_EXIT: {
-            SMactivity_exit();
+            SMactivity_exit('0');
             evtHandled = true;
             break;
         }
@@ -69,17 +69,17 @@ bool SMstatHndlr_statA(SMfsm_fsm_t* const me, const uint8_t evt) {
 
     switch (evt) {
         case SMFSM_ENTRY: {
-            SMactivity_entry();
+            SMactivity_entry('A');
             evtHandled = true;
             break;
         }
         case SMFSM_EXIT: {
-            SMactivity_exit();
+            SMactivity_exit('A');
             evtHandled = true;
             break;
         }
         case SMSTATHNDLR_EVT_B: {
-            SMactivity_trans();
+            SMactivity_trans('A', 'B');
             SMfsm_trans(me, &SMstatHndlr_statB);
             evtHandled = true;
             break;
@@ -97,23 +97,23 @@ bool SMstatHndlr_statB(SMfsm_fsm_t* const me, const uint8_t evt) {
 
     switch (evt) {
         case SMFSM_ENTRY: {
-            SMactivity_entry();
+            SMactivity_entry('B');
             evtHandled = true;
             break;
         }
         case SMFSM_EXIT: {
-            SMactivity_exit();
+            SMactivity_exit('B');
             evtHandled = true;
             break;
         }
         case SMSTATHNDLR_EVT_B: {
-            SMactivity_trans();
+            SMactivity_trans('B', 'B');
             SMfsm_trans(me, &SMstatHndlr_statB);
             evtHandled = true;
             break;
         }
         case SMSTATHNDLR_EVT_C: {
-            SMactivity_trans();
+            SMactivity_trans('B', 'C');
             SMfsm_trans(me, &SMstatHndlr_statC);
             evtHandled = true;
             break;
@@ -131,17 +131,17 @@ bool SMstatHndlr_statC(SMfsm_fsm_t* const me, const uint8_t evt) {
 
     switch (evt) {
         case SMFSM_ENTRY: {
-            SMactivity_entry();
+            SMactivity_entry('C');
             evtHandled = true;
             break;
         }
         case SMFSM_EXIT: {
-            SMactivity_exit();
+            SMactivity_exit('C');
             evtHandled = true;
             break;
         }
         case SMSTATHNDLR_EVT_A: {
-            SMactivity_trans();
+            SMactivity_trans('C', 'A');
             SMfsm_trans(me, &SMstatHndlr_statA);
             evtHandled = true;
             break;
@@ -149,12 +149,12 @@ bool SMstatHndlr_statC(SMfsm_fsm_t* const me, const uint8_t evt) {
         case SMSTATHNDLR_EVT_B: {
             /* Trans. guard */
             if (false == pv_grd0) { /* Guard condition false? */
-                SMactivity_trans();
+                SMactivity_trans('C', 'C');
                 SMfsm_trans(me, &SMstatHndlr_statC); /* Trans. to self */
                 evtHandled = true;
             }
             else if (true == pv_grd0) { /* Guard condition true? */
-                SMactivity_trans();
+                SMactivity_trans('C', 'B');
                 SMfsm_trans(me, &SMstatHndlr_statB);
                 evtHandled = true;
             }
@@ -162,7 +162,7 @@ bool SMstatHndlr_statC(SMfsm_fsm_t* const me, const uint8_t evt) {
             break;
         }
         case SMSTATHNDLR_EVT_C: {
-            SMactivity_trans();
+            SMactivity_transIntern('C');
             evtHandled = true;
             break;
         }
@@ -181,12 +181,12 @@ bool SMstatHndlr_statZ(SMfsm_fsm_t* const me, const uint8_t evt) {
 
     switch (evt) {
         case SMFSM_ENTRY: {
-            SMactivity_entry();
+            SMactivity_entry('Z');
             evtHandled = true;
             break;
         }
         case SMFSM_EXIT: {
-            SMactivity_exit();
+            SMactivity_exit('Z');
             evtHandled = true;
             break;
         }
@@ -199,7 +199,7 @@ bool SMstatHndlr_statZ(SMfsm_fsm_t* const me, const uint8_t evt) {
                and never `SMfsm_fsm_t` (base class), as the function’s
                signature might suggest. */
             if (true == ((SMstatHndlr_fsm_t*)me)->grd1) { /* Guard cond. true? */
-                SMactivity_trans();
+                SMactivity_trans('Z', 'Z');
                 SMfsm_trans(me, &SMstatHndlr_statZ); /* Trans. to self */
                 evtHandled = true;
             }

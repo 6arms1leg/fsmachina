@@ -2,6 +2,28 @@ BUILD_CONTEXT := .
 BUILD_DIR := $(BUILD_CONTEXT)/build
 SRC_DIR := $(BUILD_CONTEXT)/src
 
+CC := gcc
+CC_FLAGS := -Wall \
+            -Wextra \
+            -Wpedantic \
+            -Wredundant-decls \
+            -Wmissing-declarations \
+            -Wmissing-prototypes \
+            -Wstrict-prototypes \
+            -Wdouble-promotion \
+            -Wcast-align \
+            -Wcast-qual \
+            -Wconversion \
+            -Wwrite-strings \
+            -Wparentheses \
+            -Wshadow \
+            -Werror \
+            -std=c99 \
+            -Og \
+            -g
+LD := gcc
+LD_FLAGS := 
+
 ifndef CPPCHECKMISRA
 CPPCHECKMISRA := /usr/share/cppcheck/addons/misra.py
 endif
@@ -15,6 +37,7 @@ endif
         check-metrics-cmplx \
         check-metrics-loc \
         check-static \
+        clean-ex-app \
         clean-test \
         clean-doc-doxygen \
         clean-doc-uml \
@@ -26,6 +49,7 @@ endif
 help:
 	@echo "Make:  Available targets are:"
 	@echo "Make:  * help"
+	@echo "Make:  * ex-app"
 	@echo "Make:  * test"
 	@echo "Make:  * test-cov"
 	@echo "Make:  * doc-doxygen"
@@ -34,6 +58,7 @@ help:
 	@echo "Make:  * check-metrics-cmplx"
 	@echo "Make:  * check-metrics-loc"
 	@echo "Make:  * check-static"
+	@echo "Make:  * clean-ex-app"
 	@echo "Make:  * clean-test"
 	@echo "Make:  * clean-doc-doxygen"
 	@echo "Make:  * clean-doc-uml"
@@ -41,6 +66,52 @@ help:
 	@echo "Make:  * clean-metrics-cmplx"
 	@echo "Make:  * clean-metrics-loc"
 	@echo "Make:  * clean-all"
+
+$(BUILD_DIR)/fsmachina/obj/SMfsm.o: $(SRC_DIR)/SMfsm.c
+	mkdir -p ./build/fsmachina/obj/
+	$(CC) \
+	    $(CC_FLAGS) \
+	    -c \
+	    $< \
+	    -o $@
+
+$(BUILD_DIR)/fsmachina/obj/SMstatHndlr.o: $(BUILD_CONTEXT)/test/support/SMstatHndlr.c
+	mkdir -p ./build/fsmachina/obj/
+# Include `ex-app` path first to use its local `assert` header
+	$(CC) \
+	    $(CC_FLAGS) \
+	    -c \
+	    -I$(BUILD_CONTEXT)/ex-app/ \
+	    -I$(SRC_DIR)/ \
+	    $< \
+	    -o $@
+
+$(BUILD_DIR)/fsmachina/obj/SMactivity.o: $(BUILD_CONTEXT)/ex-app/SMactivity.c
+	mkdir -p ./build/fsmachina/obj/
+	$(CC) \
+	    $(CC_FLAGS) \
+	    -c \
+	    $< \
+	    -o $@
+
+$(BUILD_DIR)/fsmachina/obj/main.o: $(BUILD_CONTEXT)/ex-app/main.c
+	mkdir -p ./build/fsmachina/obj/
+# Include `ex-app` path first to use its local `assert` header
+	$(CC) \
+	    $(CC_FLAGS) \
+	    -c \
+	    -I$(BUILD_CONTEXT)/ex-app/ \
+	    -I$(SRC_DIR)/ \
+	    -I$(BUILD_CONTEXT)/test/support/ \
+	    $< \
+	    -o $@
+
+ex-app: $(BUILD_DIR)/fsmachina/ex-app
+$(BUILD_DIR)/fsmachina/ex-app: $(BUILD_DIR)/fsmachina/obj/SMfsm.o \
+                               $(BUILD_DIR)/fsmachina/obj/SMstatHndlr.o \
+                               $(BUILD_DIR)/fsmachina/obj/SMactivity.o \
+                               $(BUILD_DIR)/fsmachina/obj/main.o
+	$(LD) $(LD_FLAGS) $^ -o $@
 
 test:
 	ceedling test:all
@@ -100,6 +171,11 @@ check-metrics-loc:
 
 check-static:
 	cppcheck --verbose --error-exitcode=1 $(SRC_DIR)/
+
+clean-ex-app:
+	rm -rf \
+	    $(BUILD_DIR)/fsmachina/obj/*.o \
+	    $(BUILD_DIR)/fsmachina/ex-app
 
 clean-test:
 	ceedling clobber
