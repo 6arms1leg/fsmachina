@@ -12,8 +12,9 @@
 
 #include "SMfsm.h"
 
-#include "SMstatHndlr.h"
 #include "mock_SMactivity.h"
+
+#include "SMstatHndlr.h"
 
 /* OPERATIONS
  * ==========
@@ -111,8 +112,8 @@ void test_SMfsm_transActivitySequence(void) {
     const SMfsm_p_statHndlr_t p_statHndlrExp = &SMstatHndlr_statB;
     SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
 
-    SMactivity_exit_Expect();
-    SMactivity_entry_Expect();
+    SMactivity_exit_Expect('A');
+    SMactivity_entry_Expect('B');
 
     /* Re-init. FSM (directly to testing state to reduce redundancy in tests;
        UML SM diagram deviation where init. trans. activity is exec. first) */
@@ -131,10 +132,10 @@ void test_SMfsm_takeInitTrans(void) {
     SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
     bool evtHandled = false;
 
-    SMactivity_entry_Expect();
-    SMactivity_transInit_Expect();
-    SMactivity_exit_Expect();
-    SMactivity_entry_Expect();
+    SMactivity_entry_Expect('0');
+    SMactivity_trans_Expect('0', 'A');
+    SMactivity_exit_Expect('0');
+    SMactivity_entry_Expect('A');
 
     evtHandled = SMfsm_sendEvt(SMstatHndlr_p_fsm, SMFSM_ENTRY);
 
@@ -151,9 +152,9 @@ void test_SMfsm_takeNormalTrans(void) {
     SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
     bool evtHandled = false;
 
-    SMactivity_trans_Expect();
-    SMactivity_exit_Expect();
-    SMactivity_entry_Expect();
+    SMactivity_trans_Expect('A', 'B');
+    SMactivity_exit_Expect('A');
+    SMactivity_entry_Expect('B');
 
     /* Re-init. FSM (directly to testing state to reduce redundancy in tests;
        UML SM diagram deviation where init. trans. activity is exec. first) */
@@ -174,9 +175,9 @@ void test_SMfsm_takeTransToSelf(void) {
     SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
     bool evtHandled = false;
 
-    SMactivity_trans_Expect();
-    SMactivity_exit_Expect();
-    SMactivity_entry_Expect();
+    SMactivity_trans_Expect('B', 'B');
+    SMactivity_exit_Expect('B');
+    SMactivity_entry_Expect('B');
 
     /* Re-init. FSM (directly to testing state to reduce redundancy in tests;
        UML SM diagram deviation where init. trans. activity is exec. first) */
@@ -200,9 +201,9 @@ void test_SMfsm_takeTrueGrd0TransViaExtdStatVar(void) {
     SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
     bool evtHandled = false;
 
-    SMactivity_trans_Expect();
-    SMactivity_exit_Expect();
-    SMactivity_entry_Expect();
+    SMactivity_trans_Expect('C', 'B');
+    SMactivity_exit_Expect('C');
+    SMactivity_entry_Expect('B');
 
     /* Re-init. FSM (directly to testing state to reduce redundancy in tests;
        UML SM diagram deviation where init. trans. activity is exec. first) */
@@ -227,9 +228,9 @@ void test_SMfsm_takeTrueGrd1TransViaExtdStatVar(void) {
     SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
     bool evtHandled = false;
 
-    SMactivity_trans_Expect();
-    SMactivity_exit_Expect();
-    SMactivity_entry_Expect();
+    SMactivity_trans_Expect('Z', 'Z');
+    SMactivity_exit_Expect('Z');
+    SMactivity_entry_Expect('Z');
 
     SMstatHndlr_fsmZCtor(); /* Init. derived FSM object */
 
@@ -248,7 +249,7 @@ void test_SMfsm_takeInternalTrans(void) {
     SMfsm_p_statHndlr_t p_statHndlrAct = NULL;
     bool evtHandled = false;
 
-    SMactivity_trans_Expect();
+    SMactivity_transIntern_Expect('C');
 
     /* Re-init. FSM (directly to testing state to reduce redundancy in tests;
        UML SM diagram deviation where init. trans. activity is exec. first) */

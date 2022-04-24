@@ -22,7 +22,8 @@
   :source:
     - src/**
   :support:
-    - test/support
+    - test/support # Include first to use its local `assert` header
+    - ex-app
   :libraries: []
 
 :defines:
