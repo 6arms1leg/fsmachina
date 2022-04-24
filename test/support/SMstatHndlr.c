@@ -41,6 +41,9 @@ void SMstatHndlr_setGrd0(const bool grd) {
  */
 
 static bool statInit(SMfsm_fsm_t* const me, const uint8_t evt) {
+    /* No sanity checks necessary; `me` arg. already checked in API functions,
+       unknown event arg. ignored anyway */
+
     bool evtHandled = false;
 
     switch (evt) {
@@ -65,6 +68,9 @@ static bool statInit(SMfsm_fsm_t* const me, const uint8_t evt) {
 }
 
 bool SMstatHndlr_statA(SMfsm_fsm_t* const me, const uint8_t evt) {
+    /* No sanity checks necessary; `me` arg. already checked in API functions,
+       unknown event arg. ignored anyway */
+
     bool evtHandled = false;
 
     switch (evt) {
@@ -93,6 +99,9 @@ bool SMstatHndlr_statA(SMfsm_fsm_t* const me, const uint8_t evt) {
 }
 
 bool SMstatHndlr_statB(SMfsm_fsm_t* const me, const uint8_t evt) {
+    /* No sanity checks necessary; `me` arg. already checked in API functions,
+       unknown event arg. ignored anyway */
+
     bool evtHandled = false;
 
     switch (evt) {
@@ -127,6 +136,9 @@ bool SMstatHndlr_statB(SMfsm_fsm_t* const me, const uint8_t evt) {
 }
 
 bool SMstatHndlr_statC(SMfsm_fsm_t* const me, const uint8_t evt) {
+    /* No sanity checks necessary; `me` arg. already checked in API functions,
+       unknown event arg. ignored anyway */
+
     bool evtHandled = false;
 
     switch (evt) {
@@ -177,6 +189,9 @@ bool SMstatHndlr_statC(SMfsm_fsm_t* const me, const uint8_t evt) {
 /* Only used to demonstrate utilization of extended state variables via
    inheritance */
 bool SMstatHndlr_statZ(SMfsm_fsm_t* const me, const uint8_t evt) {
+    /* No sanity checks necessary; `me` arg. already checked in API functions,
+       unknown event arg. ignored anyway */
+
     bool evtHandled = false;
 
     switch (evt) {
