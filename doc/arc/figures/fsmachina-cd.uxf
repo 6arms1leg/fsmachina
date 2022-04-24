@@ -90,7 +90,7 @@ style=wordwrap</panel_attributes>
     <coordinates>
       <x>297</x>
       <y>54</y>
-      <w>729</w>
+      <w>738</w>
       <h>747</h>
     </coordinates>
     <panel_attributes>cd FSMachina
@@ -254,14 +254,15 @@ fg=light_gray</panel_attributes>
     <coordinates>
       <x>873</x>
       <y>531</y>
-      <w>135</w>
-      <h>189</h>
+      <w>144</w>
+      <h>207</h>
     </coordinates>
     <panel_attributes>activity
 --
 
 --
-+statInit(void):void
++statInitEntry(void):void
++statInitExit(void):void
 +statAEntry(void):void
 +statAExit(void):void
 +statBEntry(void):void
@@ -468,11 +469,11 @@ style=wordwrap</panel_attributes>
     <id>UMLNote</id>
     <coordinates>
       <x>702</x>
-      <y>738</y>
-      <w>252</w>
-      <h>45</h>
+      <y>711</y>
+      <w>153</w>
+      <h>72</h>
     </coordinates>
-    <panel_attributes>States are implemented as operations and have this function (pointer) signature.
+    <panel_attributes>States are implemented as operations and have this function (pointer) signature
 style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>
