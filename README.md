@@ -4,6 +4,8 @@ embedded, embedded-systems, finite-state-machine, framework, fsm,
 state-machine, synchronous
 -->
 
+![logo](./doc/logo/logo.png)
+
 # FSMachina - Simple finite state machine framework
 
 This framework employs a simple and tiny
